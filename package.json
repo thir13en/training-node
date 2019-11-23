@@ -20,6 +20,6 @@
   },
   "homepage": "https://github.com/thir13en/node-training#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "~4.17.1"
   }
 }
