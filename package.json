@@ -1,0 +1,22 @@
+{
+  "name": "playing with node",
+  "version": "1.0.0",
+  "description": "my first node app",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thir13en/node-training.git"
+  },
+  "keywords": [
+    "node"
+  ],
+  "author": "Thr13en",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thir13en/node-training/issues"
+  },
+  "homepage": "https://github.com/thir13en/node-training#readme"
+}
