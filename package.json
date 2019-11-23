@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/thir13en/node-training/issues"
   },
-  "homepage": "https://github.com/thir13en/node-training#readme"
+  "homepage": "https://github.com/thir13en/node-training#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
