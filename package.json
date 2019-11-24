@@ -4,6 +4,7 @@
   "description": "my first node app",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "test"
   },
   "repository": {
