@@ -1,5 +1,22 @@
+import cors from "cors";
+
 const express = require('express');
 const app = express();
+const cors = cors;
+const allowedOrigins = ['http://localhost:4200'];
+app.use(cors({
+	origin: (origin, callback) => {
+		// allow requests with no origin
+		// (like mobile apps or curl requests)
+		if(!origin) return callback(null, true);
+		if(allowedOrigins.indexOf(origin) === -1){
+			const msg = 'The CORS policy for this site does not ' +
+				'allow access from the specified Origin.';
+			return callback(new Error(msg), false);
+		}
+		return callback(null, true);
+	}
+}));
 app.set('view engine', 'ejs')
 
 // / -> Hi There
@@ -16,6 +33,10 @@ app.get('/dog', (req, res) => res.send('MIEW!'));
 app.get('/massage/:type', (req, res) => {
 	const massageType = req.params.type;
 	res.render('massage.ejs', { massageType });
+});
+
+app.get('massages', (req, res) => {
+	res.send('this is a massage')
 });
 
 app.get('*', (req, res) => res.send('YOU ARE THE BEST OUT THERE!'))

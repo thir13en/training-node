@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/thir13en/node-training#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "ejs": "^3.0.1",
     "express": "~4.17.1"
   }
