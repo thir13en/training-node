@@ -3,7 +3,7 @@ const app = express();
 
 // / -> Hi There
 app.get('/', (req, res) => {
-	res.send('Hi there!');
+	res.render('index.ejs');
 });
 
 // /bye -> See ya
@@ -11,6 +11,11 @@ app.get('/bye', (req, res) => res.send('see ya!'));
 
 // /dog -> MIEW
 app.get('/dog', (req, res) => res.send('MIEW!'));
+
+app.get('/massage/:type', (req, res) => {
+	const massageType = req.params.type;
+	res.render('massage.ejs', { massageType });
+});
 
 app.get('*', (req, res) => res.send('YOU ARE THE BEST OUT THERE!'))
 
