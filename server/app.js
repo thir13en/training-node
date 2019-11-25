@@ -1,8 +1,7 @@
-import cors from "cors";
-
 const express = require('express');
+const cors = require('cors');
 const app = express();
-const cors = cors;
+
 const allowedOrigins = ['http://localhost:4200'];
 app.use(cors({
 	origin: (origin, callback) => {
