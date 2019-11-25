@@ -1,5 +1,6 @@
 {
-  "name": "playing with node",
+  "author": "Thr13en",
+  "name": "node-playground",
   "version": "1.0.0",
   "description": "my first node app",
   "main": "app.js",
@@ -14,15 +15,14 @@
   "keywords": [
     "node"
   ],
-  "author": "Thr13en",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/thir13en/node-training/issues"
   },
   "homepage": "https://github.com/thir13en/node-training#readme",
   "dependencies": {
-    "cors": "^2.8.5",
-    "ejs": "^3.0.1",
+    "cors": "~2.8.5",
+    "ejs": "~3.0.1",
     "express": "~4.17.1"
   }
 }
