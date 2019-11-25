@@ -27,6 +27,7 @@ app.get('/massage/:type', (req, res) => {
 app.get('/massages', (req, res) => {
 	res.send({ message: 'this is a massage' })
 });
+app.post('/postest', (req, res) => res.send('YOUR FIRST SUCCESSFUL POST!'));
 app.get('*', (req, res) => res.send('YOU ARE THE BEST OUT THERE!'));
 
 // start the server
