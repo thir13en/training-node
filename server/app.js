@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 const app = express();
 
 // Set up CORS
@@ -14,6 +15,7 @@ app.use(cors({
 		return callback(null, true);
 	}
 }));
+app.use(bodyParser.urlencoded({ extended: true }));
 // Set up View Engine
 app.set('view engine', 'ejs');
 
@@ -27,7 +29,7 @@ app.get('/massage/:type', (req, res) => {
 app.get('/massages', (req, res) => {
 	res.send({ message: 'this is a massage' })
 });
-app.post('/postest', (req, res) => res.send('YOUR FIRST SUCCESSFUL POST!'));
+app.post('/myname', (req, res) => res.send('YOUR FIRST SUCCESSFUL POST!'));
 app.get('*', (req, res) => res.send('YOU ARE THE BEST OUT THERE!'));
 
 // start the server

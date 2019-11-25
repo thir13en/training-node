@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from "../services/api.service";
+import { NgForm } from '@angular/forms';
+
+import { ApiService } from '../services/api.service';
+
 
 @Component({
   selector: 'app-root',
@@ -15,5 +18,9 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
     this.apiService.get('massages').subscribe((res: any) => console.log(res));
+  }
+
+  submit(form: NgForm): void {
+
   }
 }
