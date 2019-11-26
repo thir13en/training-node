@@ -9,8 +9,8 @@ import { ApiService } from '../services/api.service';
   templateUrl: './app.component.html',
   styles: []
 })
-export class AppComponent implements OnInit{
-  title = 'revitalize';
+export class AppComponent implements OnInit {
+  name = 'User name';
 
   constructor(
     private apiService: ApiService,
@@ -21,6 +21,8 @@ export class AppComponent implements OnInit{
   }
 
   submit(form: NgForm): void {
-
+    console.log(form);
+    debugger;
   }
+
 }

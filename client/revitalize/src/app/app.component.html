@@ -2,11 +2,18 @@
 
   <h1>YOUR NAME FORM</h1>
 
-  <form #f="ngForm" (ngSubmit)="submit(f)">
+  <form #nameForm="ngForm" (ngSubmit)="submit(nameForm)">
 
     <div>
       <label for="name">Tell me your name:</label>
-      <input id="name" type="text" required>
+      <input
+        id="username"
+        name="username"
+        type="text"
+        placeholder="username"
+        required
+        ngModel
+      />
     </div>
 
     <button type="submit">Submit</button>
