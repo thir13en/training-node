@@ -1,7 +1,19 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const request = require('request');
 const app = express();
+
+// MY FIRST REQUEST TEST
+request('http://google.com', (err, res, body) => {
+	if (err) {
+		console.log('SOMETHING WENT WRONG!', err);
+	} else {
+		if (res.statusCode === 200) {
+			console.log(body);
+		}
+	}
+})
 
 // Set up CORS
 const allowedOrigins = ['http://localhost:4200'];
