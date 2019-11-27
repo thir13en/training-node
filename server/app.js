@@ -5,7 +5,7 @@ const request = require('request');
 const app = express();
 
 // MY FIRST REQUEST TEST
-request('http://google.com', (err, res, body) => {
+request('https://weather-ydn-yql.media.yahoo.com/forecastrss?location=sunnyvale,ca', (err, res, body) => {
 	if (err) {
 		console.log('SOMETHING WENT WRONG!', err);
 	} else {
