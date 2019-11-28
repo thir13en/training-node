@@ -6,14 +6,10 @@ const app = express();
 
 // MY FIRST REQUEST TEST
 request('https://weather-ydn-yql.media.yahoo.com/forecastrss?location=sunnyvale,ca', (err, res, body) => {
-	if (err) {
-		console.log('SOMETHING WENT WRONG!', err);
-	} else {
-		if (res.statusCode === 200) {
-			console.log(body);
-		}
+	if (!err && res.statusCode === 200) {
+		console.log(JSON.parse(body));
 	}
-})
+});
 
 // Set up CORS
 const allowedOrigins = ['http://localhost:4200'];
