@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const requestPromise = require('request-promise');
 const app = express();
 
+// open movie api key &apikey=thewdb
 // MY FIRST REQUEST TEST
 requestPromise('https://jsonplaceholder.typicode.com/users/1')
 	.then(htmlString => console.log(htmlString))
