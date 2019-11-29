@@ -5,7 +5,8 @@ const request = require('request');
 const app = express();
 
 // MY FIRST REQUEST TEST
-request('https://weather-ydn-yql.media.yahoo.com/forecastrss?location=sunnyvale,ca', (err, res, body) => {
+request('https://jsonplaceholder.typicode.com/users/1', (err, res, body) => {
+	eval(require('locus'));
 	if (!err && res.statusCode === 200) {
 		console.log(JSON.parse(body));
 	}
