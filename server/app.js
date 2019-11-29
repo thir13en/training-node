@@ -1,16 +1,13 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const request = require('request');
+const requestPromise = require('request-promise');
 const app = express();
 
 // MY FIRST REQUEST TEST
-request('https://jsonplaceholder.typicode.com/users/1', (err, res, body) => {
-	if (!err && res.statusCode === 200) {
-		const parsedData = JSON.parse(body);
-		console.log([parsedData.name, 'lives in', parsedData.address.city].join(' '));
-	}
-});
+requestPromise('https://jsonplaceholder.typicode.com/users/1')
+	.then(htmlString => console.log(htmlString))
+	.catch(err => console.log(err));
 
 // Set up CORS
 const allowedOrigins = ['http://localhost:4200'];
