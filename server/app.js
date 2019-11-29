@@ -6,9 +6,9 @@ const app = express();
 
 // MY FIRST REQUEST TEST
 request('https://jsonplaceholder.typicode.com/users/1', (err, res, body) => {
-	eval(require('locus'));
 	if (!err && res.statusCode === 200) {
-		console.log(JSON.parse(body));
+		const parsedData = JSON.parse(body);
+		console.log([parsedData.name, 'lives in', parsedData.address.city].join(' '));
 	}
 });
 
