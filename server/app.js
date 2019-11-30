@@ -5,10 +5,6 @@ const requestPromise = require('request-promise');
 const app = express();
 
 // open movie api key &apikey=thewdb
-// MY FIRST REQUEST TEST
-requestPromise('https://jsonplaceholder.typicode.com/users/1')
-	.then(htmlString => console.log(htmlString))
-	.catch(err => console.log(err));
 
 // Set up CORS
 const allowedOrigins = ['http://localhost:4200'];
@@ -37,6 +33,7 @@ app.get('/massages', (req, res) => {
 	res.send({ message: 'this is a massage' })
 });
 app.post('/myname', (req, res) => res.send('YOUR FIRST SUCCESSFUL POST!'));
+app.get('/movie', (req, res) => res.send('no movie here pal'));
 app.get('*', (req, res) => res.send('YOU ARE THE BEST OUT THERE!'));
 
 // start the server
