@@ -33,7 +33,11 @@ app.get('/massages', (req, res) => {
 	res.send({ message: 'this is a massage' })
 });
 app.post('/myname', (req, res) => res.send('YOUR FIRST SUCCESSFUL POST!'));
-app.get('/movie', (req, res) => res.send('no movie here pal'));
+app.get('/movie', (req, res) => {
+	requestPromise('http://www.omdbapi.com/?s=tomates&apikey=thewdb')
+		.then(apiRes => res.send(apiRes))
+		.catch(err => console.log(err));
+});
 app.get('*', (req, res) => res.send('YOU ARE THE BEST OUT THERE!'));
 
 // start the server
