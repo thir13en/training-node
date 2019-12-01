@@ -26,8 +26,10 @@ export class AppComponent implements OnInit {
   }
 
   submit(form: NgForm): void {
-    console.log(form);
-    debugger;
+    this.apiService.get(ENDPOINTS.SEARCH).subscribe(
+      (res: any) => console.log(res),
+      (err: Error) => console.error(err),
+    )
   }
 
 }
