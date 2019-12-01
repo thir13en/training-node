@@ -19,17 +19,18 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.movies$ = this.apiService.get(ENDPOINTS.MOVIES).pipe(
+  }
+
+  submit({ form}: NgForm): void {
+    const params: { param: string, value: string }[] = [];
+
+    params.push({ param: 'search', value: form.controls.username.value });
+
+    this.movies$ = this.apiService.get(ENDPOINTS.MOVIES, params).pipe(
       filter((res: any): boolean => res.Response),
       map((res: any): any[] => res.Search),
     );
-  }
 
-  submit(form: NgForm): void {
-    this.apiService.get(ENDPOINTS.SEARCH).subscribe(
-      (res: any) => console.log(res),
-      (err: Error) => console.error(err),
-    )
   }
 
 }

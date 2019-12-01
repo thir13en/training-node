@@ -21,8 +21,8 @@
   </form>
 
   <h3>A list of movies:</h3>
-  <ul>
-    <li *ngFor="let movie of (movies$ | async)">{{movie.Title}}</li>
+  <ul *ngIf="movies$ | async as movies">
+    <li *ngFor="let movie of movies">{{movie.Title}}</li>
   </ul>
 
 </section>

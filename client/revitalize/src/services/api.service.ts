@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 
 import { Observable } from "rxjs";
 
@@ -12,7 +12,10 @@ export class ApiService {
     private http: HttpClient,
   ) {}
 
-  get(urlFragment: ENDPOINTS): Observable<any> {
-    return this.http.get([environment.apiUrl, urlFragment].join('/'));
+  get(urlFragment: ENDPOINTS, payload: { param: string, value: string }[]): Observable<any> {
+    const params: HttpParams = new HttpParams();
+    params.set(payload[0].param, payload[0].value);
+    debugger;
+    return this.http.get([environment.apiUrl, urlFragment].join('/'), { params });
   }
 }

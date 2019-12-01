@@ -38,10 +38,12 @@ app.post('/myname', (req, res) => res.send('YOUR FIRST SUCCESSFUL POST!'));
 
 
 // open movie api key &apikey=thewdb
-app.get('/search', (req, res) => res.send('{ works: true }'));
 app.get('/movies', (req, res) =>
 	requestPromise('http://www.omdbapi.com/?s=tomates&apikey=thewdb')
-		.then(apiRes => res.send(JSON.parse(apiRes)))
+		.then(apiRes => {
+			eval(require('locus'));
+			res.send(JSON.parse(apiRes));
+		})
 		.catch(err => console.log(err))
 );
 app.get('*', (req, res) => res.send('YOU ARE THE BEST OUT THERE!'));
