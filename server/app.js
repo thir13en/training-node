@@ -36,7 +36,7 @@ app.get('/massages', (req, res) => {
 });
 app.post('/myname', (req, res) => res.send('YOUR FIRST SUCCESSFUL POST!'));
 // open movie api key &apikey=thewdb
-app.get('/movie', (req, res) =>
+app.get('/movies', (req, res) =>
 	requestPromise('http://www.omdbapi.com/?s=tomates&apikey=thewdb')
 		.then(apiRes => res.send(JSON.parse(apiRes)))
 		.catch(err => console.log(err))

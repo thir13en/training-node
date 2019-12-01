@@ -2,26 +2,27 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { ApiService } from '../services/api.service';
+import { ENDPOINTS } from "../network";
+import { Observable } from "rxjs";
+import { filter, map } from "rxjs/operators";
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styles: []
 })
 export class AppComponent implements OnInit {
-  name = 'User name';
+  movies$: Observable<any[]>;
 
   constructor(
     private apiService: ApiService,
   ) {}
 
   ngOnInit(): void {
-    this.apiService.get('movie').subscribe((res: any) => {
-      if (res.Response) {
-        console.log(res.Search);
-      }
-    });
+    this.movies$ = this.apiService.get(ENDPOINTS.MOVIES).pipe(
+      filter((res: any): boolean => res.Response),
+      map((res: any): any[] => res.Search),
+    );
   }
 
   submit(form: NgForm): void {

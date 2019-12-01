@@ -5,7 +5,7 @@
   <form #nameForm="ngForm" (ngSubmit)="submit(nameForm)">
 
     <div>
-      <label for="name">Tell me your name:</label>
+      <label for="username">Tell me your name:</label>
       <input
         id="username"
         name="username"
@@ -19,5 +19,10 @@
     <button type="submit">Submit</button>
 
   </form>
+
+  <h3>A list of movies:</h3>
+  <ul>
+    <li *ngFor="let movie of (movies$ | async)">{{movie.Title}}</li>
+  </ul>
 
 </section>
