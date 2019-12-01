@@ -17,7 +17,11 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.apiService.get('massages').subscribe((res: any) => console.log(res));
+    this.apiService.get('movie').subscribe((res: any) => {
+      if (res.Response) {
+        console.log(res.Search);
+      }
+    });
   }
 
   submit(form: NgForm): void {
