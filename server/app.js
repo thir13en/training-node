@@ -4,8 +4,6 @@ const bodyParser = require('body-parser');
 const requestPromise = require('request-promise');
 const app = express();
 
-// open movie api key &apikey=thewdb
-
 // Set up CORS
 const allowedOrigins = ['http://localhost:4200'];
 app.use(cors({
@@ -18,10 +16,14 @@ app.use(cors({
 		return callback(null, true);
 	}
 }));
+
+// set up body parser to parse request response with encoded urls
 app.use(bodyParser.urlencoded({ extended: true }));
+
 // Set up View Engine
 app.set('view engine', 'ejs');
 
+// endpoints
 app.get('/', (req, res) => res.render('index.ejs'));
 app.get('/bye', (req, res) => res.send('see ya!'));
 app.get('/dog', (req, res) => res.send('MIEW!'));
@@ -33,6 +35,7 @@ app.get('/massages', (req, res) => {
 	res.send({ message: 'this is a massage' })
 });
 app.post('/myname', (req, res) => res.send('YOUR FIRST SUCCESSFUL POST!'));
+// open movie api key &apikey=thewdb
 app.get('/movie', (req, res) =>
 	requestPromise('http://www.omdbapi.com/?s=tomates&apikey=thewdb')
 		.then(apiRes => res.send(JSON.parse(apiRes)))
