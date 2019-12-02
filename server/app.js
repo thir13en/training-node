@@ -23,6 +23,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Set up View Engine
 app.set('view engine', 'ejs');
 
+const baseApiUrl = 'http://www.omdbapi.com/';
+const apiKeyParam = { param: 'apikey', value: 'thewdb' };
+
 // endpoints
 app.get('/', (req, res) => res.render('index.ejs'));
 app.get('/bye', (req, res) => res.send('see ya!'));
@@ -38,14 +41,13 @@ app.post('/myname', (req, res) => res.send('YOUR FIRST SUCCESSFUL POST!'));
 
 
 // open movie api key &apikey=thewdb
-app.get('/movies', (req, res) =>
-	requestPromise('http://www.omdbapi.com/?s=tomates&apikey=thewdb')
-		.then(apiRes => {
-			eval(require('locus'));
-			res.send(JSON.parse(apiRes));
-		})
+app.get('/movies', (req, res) => {
+	const url = [baseApiUrl, '?', 's=', req.query.search, '&', apiKeyParam.param, '=', apiKeyParam.value].join('');
+
+	return requestPromise(url)
+		.then(apiRes => res.send(JSON.parse(apiRes)))
 		.catch(err => console.log(err))
-);
+});
 app.get('*', (req, res) => res.send('YOU ARE THE BEST OUT THERE!'));
 
 // start the server
