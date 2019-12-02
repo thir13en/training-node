@@ -30,17 +30,12 @@ const apiKeyParam = { param: 'apikey', value: 'thewdb' };
 app.get('/', (req, res) => res.render('index.ejs'));
 app.get('/bye', (req, res) => res.send('see ya!'));
 app.get('/dog', (req, res) => res.send('MIEW!'));
+app.get('/massages', (req, res) => res.send({ message: 'this is a massage' }));
 app.get('/massage/:type', (req, res) => {
 	const massageType = req.params.type;
 	res.render('massage.ejs', { massageType });
 });
-app.get('/massages', (req, res) => {
-	res.send({ message: 'this is a massage' })
-});
 app.post('/myname', (req, res) => res.send('YOUR FIRST SUCCESSFUL POST!'));
-
-
-// open movie api key &apikey=thewdb
 app.get('/movies', (req, res) => {
 	const url = [baseApiUrl, '?', 's=', req.query.search, '&', apiKeyParam.param, '=', apiKeyParam.value].join('');
 
@@ -49,6 +44,7 @@ app.get('/movies', (req, res) => {
 		.catch(err => console.log(err))
 });
 app.get('*', (req, res) => res.send('YOU ARE THE BEST OUT THERE!'));
+
 
 // start the server
 app.listen(3000, () => console.log('listening on port 3000'));
