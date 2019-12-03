@@ -125,6 +125,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "revitalize"
+    }
+  },
+  "defaultProject": "revitalize",
+  "cli": {
+    "analytics": false
+  }
 }
