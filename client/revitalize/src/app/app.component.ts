@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
+import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
+
 import { ApiService } from '../services/api.service';
-import { ENDPOINTS } from "../network";
-import { Observable } from "rxjs";
-import { filter, map } from "rxjs/operators";
+import { ENDPOINTS } from '../network';
 
 
 @Component({

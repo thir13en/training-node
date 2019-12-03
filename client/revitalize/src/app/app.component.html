@@ -1,16 +1,16 @@
 <section>
 
-  <h1>YOUR NAME FORM</h1>
+  <h1>{{ copy.TITLE }}</h1>
 
   <form #nameForm="ngForm" (ngSubmit)="submit(nameForm)">
 
     <div>
-      <label for="username">Tell me your name:</label>
+      <label for="search">Tell me your name:</label>
       <input
-        id="username"
-        name="username"
+        id="search"
+        name="search"
         type="text"
-        placeholder="username"
+        placeholder="search movie"
         required
         ngModel
       />
