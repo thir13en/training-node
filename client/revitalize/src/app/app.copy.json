@@ -1,3 +1,6 @@
 {
-  "TITLE": "SEARCH FOR MOVIES"
+  "TITLE": "SEARCH FOR MOVIES",
+  "SEARCH": "Search for a movie",
+  "ACTION": "Submit",
+  "RESULTS": "Your found movies"
 }
