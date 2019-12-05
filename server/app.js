@@ -6,7 +6,7 @@ const app = express();
 
 // database connect
 const mongoose = require('mongoose');
-mongoose.connect("mongodb://localhost/revitalize");
+mongoose.connect('mongodb://localhost/revitalize');
 
 // Set up CORS
 const allowedOrigins = ['http://localhost:4200'];
@@ -36,7 +36,7 @@ const massageSchema = new mongoose.Schema({
 	price: Number,
 });
 
-const Massage = mongoose.model("Massage", massageSchema);
+const Massage = mongoose.model('Massage', massageSchema);
 
 // endpoints
 app.get('/', (req, res) => res.render('index.ejs'));
