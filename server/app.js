@@ -4,6 +4,10 @@ const bodyParser = require('body-parser');
 const requestPromise = require('request-promise');
 const app = express();
 
+// database connect
+const mongoose = require('mongoose');
+mongoose.connect("mongodb://localhost/revitalize");
+
 // Set up CORS
 const allowedOrigins = ['http://localhost:4200'];
 app.use(cors({
@@ -25,6 +29,14 @@ app.set('view engine', 'ejs');
 
 const baseApiUrl = 'http://www.omdbapi.com/';
 const apiKeyParam = { param: 'apikey', value: 'thewdb' };
+
+// new schema
+const massageSchema = new mongoose.Schema({
+	type: String,
+	price: Number,
+});
+
+const Massage = mongoose.model("Massage", massageSchema);
 
 // endpoints
 app.get('/', (req, res) => res.render('index.ejs'));
