@@ -6,7 +6,7 @@ const app = express();
 
 // database connect
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/revitalize');
+mongoose.connect('mongodb://localhost/revitalize', { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Set up CORS
 const allowedOrigins = ['http://localhost:4200'];
