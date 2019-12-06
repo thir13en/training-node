@@ -1,12 +1,16 @@
 const express = require('express');
-const cors = require('cors');
+const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const requestPromise = require('request-promise');
+const cors = require('cors');
+
+// get app instance
 const app = express();
 
 // database connect
-const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/revitalize', { useNewUrlParser: true, useUnifiedTopology: true });
+
+console.log(process.env.PORT);
 
 // Set up CORS
 const allowedOrigins = ['http://localhost:4200'];
