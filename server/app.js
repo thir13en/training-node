@@ -28,9 +28,6 @@ app.use(cors({
 // set up body parser to parse request response with encoded urls
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Set up View Engine
-app.set('view engine', 'ejs');
-
 const baseApiUrl = 'http://www.omdbapi.com/';
 const apiKeyParam = { param: 'apikey', value: 'thewdb' };
 
@@ -43,13 +40,13 @@ const massageSchema = new mongoose.Schema({
 const Massage = mongoose.model('Massage', massageSchema);
 
 // endpoints
-app.get('/', (req, res) => res.render('index.ejs'));
+app.get('/', (req, res) => res.send('HOME PAGE'));
 app.get('/bye', (req, res) => res.send('see ya!'));
 app.get('/dog', (req, res) => res.send('MIEW!'));
 app.get('/massages', (req, res) => res.send({ message: 'this is a massage' }));
 app.get('/massage/:type', (req, res) => {
 	const massageType = req.params.type;
-	res.render('massage.ejs', { massageType });
+	res.send(massageType);
 });
 app.post('/myname', (req, res) => res.send('YOUR FIRST SUCCESSFUL POST!'));
 app.get('/movies', (req, res) => {
