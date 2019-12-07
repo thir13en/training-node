@@ -9,16 +9,14 @@ require('dotenv').config();
 const app = express();
 
 // database connect
-mongoose.connect('mongodb://localhost/revitalize', { useNewUrlParser: true, useUnifiedTopology: true });
-
-console.log(process.env.PORT);
+mongoose.connect(process.env.MONGO_DB, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Set up CORS
-const allowedOrigins = ['http://localhost:4200'];
+const allowedOrigins = process.env.ALLOWED_ORIGINS;
 app.use(cors({
 	origin: (origin, callback) => {
 		// allow requests with no origin (like mobile apps or curl requests)
-		if(origin && allowedOrigins.indexOf(origin) === -1){
+		if(origin && allowedOrigins.indexOf(origin) === -1) {
 			const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
 			return callback(new Error(msg), false);
 		}
@@ -39,6 +37,18 @@ const massageSchema = new mongoose.Schema({
 });
 
 const Massage = mongoose.model('Massage', massageSchema);
+// Massage.create(
+// 	{ type: 'californian', price: 111 },
+// 	(err, massage) =>
+// 		err ? console.log('something went wrong', err) : console.log('new massage added', massage)
+// );
+Massage.find(
+	{},
+	(err, massages) =>
+		err ?
+			console.log('there was an error retrieving the massages') :
+			console.log('here you are your massages', massages)
+);
 
 // endpoints
 app.get('/', (req, res) => res.send('HOME PAGE'));
