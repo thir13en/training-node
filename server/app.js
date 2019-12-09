@@ -8,6 +8,7 @@ require('dotenv').config();
 // get app instance
 const app = express();
 
+console.log(process.env.MONGO_DB);
 // database connect
 mongoose.connect(process.env.MONGO_DB, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -38,11 +39,11 @@ const massageSchema = new mongoose.Schema({
 
 // compile into a model
 const Massage = mongoose.model('Massage', massageSchema);
-// Massage.create(
-// 	{ type: 'californian', price: 111 },
-// 	(err, massage) =>
-// 		err ? console.log('something went wrong', err) : console.log('new massage added', massage)
-// );
+Massage.create(
+	{ type: 'californian', price: 111 },
+	(err, massage) =>
+		err ? console.log('something went wrong', err) : console.log('new massage added', massage)
+);
 
 // endpoints
 app.get('/', (req, res) => res.send('HOME PAGE'));
