@@ -45,35 +45,35 @@ Massage.create(
 		err ? console.log('something went wrong', err) : console.log('new massage added', massage)
 );
 
-// endpoints
-app.get('/', (req, res) => res.send('HOME PAGE'));
-app.get('/bye', (req, res) => res.send('see ya!'));
-app.get('/dog', (req, res) => res.send('MIEW!'));
-
-// get all massages
-app.get('/massages', (req, res) => {
-	Massage.find(
-		{},
-		(err, massages) =>
-			err ?
-				console.log('there was an error retrieving the massages') :
-				res.send(massages)
-	);
-});
-
-app.get('/massage/:type', (req, res) => {
-	const massageType = req.params.type;
-	res.send(massageType);
-});
-app.post('/myname', (req, res) => res.send('YOUR FIRST SUCCESSFUL POST!'));
-app.get('/movies', (req, res) => {
-	const url = [baseApiUrl, '?', 's=', req.query.search, '&', apiKeyParam.param, '=', apiKeyParam.value].join('');
-
-	return requestPromise(url)
-		.then(apiRes => res.send(JSON.parse(apiRes)))
-		.catch(err => console.log(err))
-});
-app.get('*', (req, res) => res.send('YOU ARE THE BEST OUT THERE!'));
+// // endpoints
+// app.get('/', (req, res) => res.send('HOME PAGE'));
+// app.get('/bye', (req, res) => res.send('see ya!'));
+// app.get('/dog', (req, res) => res.send('MIEW!'));
+//
+// // get all massages
+// app.get('/massages', (req, res) => {
+// 	Massage.find(
+// 		{},
+// 		(err, massages) =>
+// 			err ?
+// 				console.log('there was an error retrieving the massages') :
+// 				res.send(massages)
+// 	);
+// });
+//
+// app.get('/massage/:type', (req, res) => {
+// 	const massageType = req.params.type;
+// 	res.send(massageType);
+// });
+// app.post('/myname', (req, res) => res.send('YOUR FIRST SUCCESSFUL POST!'));
+// app.get('/movies', (req, res) => {
+// 	const url = [baseApiUrl, '?', 's=', req.query.search, '&', apiKeyParam.param, '=', apiKeyParam.value].join('');
+//
+// 	return requestPromise(url)
+// 		.then(apiRes => res.send(JSON.parse(apiRes)))
+// 		.catch(err => console.log(err))
+// });
+// app.get('*', (req, res) => res.send('YOU ARE THE BEST OUT THERE!'));
 
 
 // start the server
