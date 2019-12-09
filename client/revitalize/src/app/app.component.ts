@@ -14,7 +14,7 @@ import { ENDPOINTS } from '../network';
   templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit {
-  movies$: Observable<any[]>;
+  massages$: Observable<any[]>;
   copy: any;
 
   constructor(
@@ -26,11 +26,7 @@ export class AppComponent implements OnInit {
   }
 
   submit({ form}: NgForm): void {
-    const params: { param: string, value: string }[] = [];
-
-    params.push({ param: 'search', value: form.controls.search.value });
-
-    this.movies$ = this.apiService.get(ENDPOINTS.MOVIES, params).pipe(
+    this.massages$ = this.apiService.get(ENDPOINTS.MASSAGES).pipe(
       filter((res: any): boolean => res.Response),
       map((res: any): any[] => res.Search),
     );

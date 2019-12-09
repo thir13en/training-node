@@ -21,8 +21,8 @@
   </form>
 
   <h3>{{copy.RESULTS}}:</h3>
-  <ul *ngIf="movies$ | async as movies">
-    <li *ngFor="let movie of movies">{{movie.Title}}</li>
+  <ul *ngIf="massages$ | async as massages">
+    <li *ngFor="let massage of massages">{{massage | json}}</li>
   </ul>
 
 </section>

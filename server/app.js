@@ -36,25 +36,30 @@ const massageSchema = new mongoose.Schema({
 	price: Number,
 });
 
+// compile into a model
 const Massage = mongoose.model('Massage', massageSchema);
 // Massage.create(
 // 	{ type: 'californian', price: 111 },
 // 	(err, massage) =>
 // 		err ? console.log('something went wrong', err) : console.log('new massage added', massage)
 // );
-Massage.find(
-	{},
-	(err, massages) =>
-		err ?
-			console.log('there was an error retrieving the massages') :
-			console.log('here you are your massages', massages)
-);
 
 // endpoints
 app.get('/', (req, res) => res.send('HOME PAGE'));
 app.get('/bye', (req, res) => res.send('see ya!'));
 app.get('/dog', (req, res) => res.send('MIEW!'));
-app.get('/massages', (req, res) => res.send({ message: 'this is a massage' }));
+
+// get all massages
+app.get('/massages', (req, res) => {
+	Massage.find(
+		{},
+		(err, massages) =>
+			err ?
+				console.log('there was an error retrieving the massages') :
+				res.send(massages)
+	);
+});
+
 app.get('/massage/:type', (req, res) => {
 	const massageType = req.params.type;
 	res.send(massageType);
