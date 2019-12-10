@@ -28,9 +28,6 @@ app.use(cors({
 // set up body parser to parse request response with encoded urls
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const baseApiUrl = 'http://www.omdbapi.com/';
-const apiKeyParam = { param: 'apikey', value: 'thewdb' };
-
 // new schema
 const massageSchema = new mongoose.Schema({
 	type: String,
@@ -39,16 +36,6 @@ const massageSchema = new mongoose.Schema({
 
 // compile into a model
 const Massage = mongoose.model('Massage', massageSchema);
-Massage.create(
-	{ type: 'thai', price: 222 },
-	(err, massage) =>
-		err ? console.log('something went wrong', err) : console.log('new massage added', massage)
-);
-
-// endpoints
-app.get('/', (req, res) => res.send('HOME PAGE'));
-app.get('/bye', (req, res) => res.send('see ya!'));
-app.get('/dog', (req, res) => res.send('MIEW!'));
 
 // get all massages
 app.get('/massages', (req, res) => {
@@ -65,14 +52,20 @@ app.get('/massage/:type', (req, res) => {
 	const massageType = req.params.type;
 	res.send(massageType);
 });
-app.post('/myname', (req, res) => res.send('YOUR FIRST SUCCESSFUL POST!'));
-app.get('/movies', (req, res) => {
-	const url = [baseApiUrl, '?', 's=', req.query.search, '&', apiKeyParam.param, '=', apiKeyParam.value].join('');
 
-	return requestPromise(url)
-		.then(apiRes => res.send(JSON.parse(apiRes)))
-		.catch(err => console.log(err))
+app.post('/massages', (req, res) => {
+	const type = req.body.type;
+	const price = req.body.price;
+
+	Massage.create(
+		{ type, price },
+		(err, massage) => err ?
+			console.log('something went wrong', err) :
+			res.send('new massage added', massage)
+	);
+
 });
+
 app.get('*', (req, res) => res.send('YOU ARE THE BEST OUT THERE!'));
 
 
