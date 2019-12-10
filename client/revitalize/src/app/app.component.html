@@ -2,24 +2,6 @@
 
   <h1>{{ copy.TITLE }}</h1>
 
-  <form #nameForm="ngForm" (ngSubmit)="submit(nameForm)">
-
-    <div>
-      <label for="search">{{copy.SEARCH}}:</label>
-      <input
-        id="search"
-        name="search"
-        type="text"
-        placeholder="search movie"
-        required
-        ngModel
-      />
-    </div>
-
-    <button type="submit">{{copy.ACTION}}</button>
-
-  </form>
-
   <h3>{{copy.RESULTS}}:</h3>
   <ul *ngIf="massages$ | async as massages">
     <li *ngFor="let massage of massages">{{massage | json}}</li>

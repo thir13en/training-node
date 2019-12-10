@@ -40,7 +40,7 @@ const massageSchema = new mongoose.Schema({
 // compile into a model
 const Massage = mongoose.model('Massage', massageSchema);
 Massage.create(
-	{ type: 'californian', price: 111 },
+	{ type: 'thai', price: 222 },
 	(err, massage) =>
 		err ? console.log('something went wrong', err) : console.log('new massage added', massage)
 );

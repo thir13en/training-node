@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import copy from './app.copy.json';
 
 import { Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
 
 import { ApiService } from '../services/api.service';
 import { ENDPOINTS } from '../network';
@@ -23,14 +22,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.copy = copy;
-  }
-
-  submit({ form}: NgForm): void {
-    this.massages$ = this.apiService.get(ENDPOINTS.MASSAGES).pipe(
-      filter((res: any): boolean => res.Response),
-      map((res: any): any[] => res.Search),
-    );
-
+    this.massages$ = this.apiService.get(ENDPOINTS.MASSAGES);
   }
 
 }
