@@ -5,10 +5,10 @@
   <form #newMassageForm="ngForm" (ngSubmit)="submit(newMassageForm)">
 
     <div>
-      <label for="newMassage">{{copy.SEARCH}}:</label>
+      <label for="massageType">{{copy.ADD}}:</label>
       <input
-        id="newMassage"
-        name="newMassage"
+        id="massageType"
+        name="massageType"
         type="text"
         placeholder="Add a new massage type"
         required
@@ -16,7 +16,21 @@
       />
     </div>
 
-    <button type="submit">{{copy.ACTION}}</button>
+    <div>
+      <label for="price">{{copy.PRICE}}:</label>
+      <input
+        id="price"
+        name="price"
+        type="number"
+        min="1"
+        max="555"
+        placeholder="The massage price"
+        required
+        ngModel
+      />
+    </div>
+
+    <button type="submit" [disabled]="newMassageForm.invalid">{{copy.ACTION}}</button>
 
   </form>
 

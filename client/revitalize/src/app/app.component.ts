@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 
 import { ApiService } from '../services/api.service';
 import { ENDPOINTS } from '../network';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -26,7 +27,13 @@ export class AppComponent implements OnInit {
   }
 
   submit(newMassageFrom: NgForm): void {
-
+    this.apiService.post(
+      ENDPOINTS.MASSAGES,
+      { type: newMassageFrom.controls.massageType.value, price: newMassageFrom.controls.price.value }
+    ).subscribe(
+      (res: any): void => console.log(res),
+      (err: HttpErrorResponse): void => console.log(err),
+    );
   }
 
 }

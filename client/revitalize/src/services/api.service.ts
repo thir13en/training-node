@@ -13,13 +13,25 @@ export class ApiService {
     private http: HttpClient,
   ) {}
 
-  get(urlFragment: ENDPOINTS, payload?: { param: string, value: string }[]): Observable<any> {
-    if (payload) {
-      const params = this.addQueryParams(payload);
-      return this.http.get([environment.apiUrl, urlFragment].join('/'), { params });
+  get(urlFragment: ENDPOINTS, params?: { param: string, value: string }[]): Observable<any> {
+    const url = this.getFullUrlWithPath(urlFragment);
+
+    if (params) {
+      const formattedParams = this.addQueryParams(params);
+      return this.http.get(url, { params: formattedParams });
     } else {
-      return this.http.get([environment.apiUrl, urlFragment].join('/'));
+      return this.http.get(url);
     }
+  }
+
+  post(urlFragment: ENDPOINTS, payload: any): Observable<any> {
+    const url = this.getFullUrlWithPath(urlFragment);
+
+    return this.http.post(url, payload);
+  }
+
+  private getFullUrlWithPath(urlFragment: string): string {
+    return [environment.apiUrl, urlFragment].join('/');
   }
 
   private addQueryParams(payload: { param: string, value: string }[]): HttpParams {
