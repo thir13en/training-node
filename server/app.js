@@ -25,8 +25,9 @@ app.use(cors({
 	}
 }));
 
-// set up body parser to parse request response with encoded urls
+// set up body parser to parse request response with encoded urls and json type
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // new schema
 const massageSchema = new mongoose.Schema({
@@ -37,7 +38,7 @@ const massageSchema = new mongoose.Schema({
 // compile into a model
 const Massage = mongoose.model('Massage', massageSchema);
 
-// get all massages
+// massages restful routes
 app.get('/massages', (req, res) => {
 	Massage.find(
 		{},
@@ -48,11 +49,6 @@ app.get('/massages', (req, res) => {
 	);
 });
 
-app.get('/massage/:type', (req, res) => {
-	const massageType = req.params.type;
-	res.send(massageType);
-});
-
 app.post('/massages', (req, res) => {
 	const type = req.body.type;
 	const price = req.body.price;
@@ -61,9 +57,17 @@ app.post('/massages', (req, res) => {
 		{ type, price },
 		(err, massage) => err ?
 			console.log('something went wrong', err) :
-			res.send('new massage added', massage)
+			res.send({
+				message: 'new massage added',
+				massage
+			})
 	);
 
+});
+
+app.get('/massage/:type', (req, res) => {
+	const massageType = req.params.type;
+	res.send(massageType);
 });
 
 app.get('*', (req, res) => res.send('YOU ARE THE BEST OUT THERE!'));
