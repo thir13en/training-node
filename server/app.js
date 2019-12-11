@@ -1,8 +1,10 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const requestPromise = require('request-promise');
-const cors = require('cors');
+// vendor
+const express = 				require('express');
+const mongoose = 				require('mongoose');
+const bodyParser = 			require('body-parser');
+const requestPromise = 	require('request-promise');
+const cors = 						require('cors');
+// enable environment variables
 require('dotenv').config();
 
 
