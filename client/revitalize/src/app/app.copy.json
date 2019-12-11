@@ -1,4 +1,6 @@
 {
   "TITLE": "SEARCH FOR MASSAGES",
-  "RESULTS": "Your found massages"
+  "ADD": "Add a new massage",
+  "RESULTS": "Your found massages",
+  "ACTION": "Add"
 }

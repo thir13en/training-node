@@ -25,4 +25,8 @@ export class AppComponent implements OnInit {
     this.massages$ = this.apiService.get(ENDPOINTS.MASSAGES);
   }
 
+  submit(newMassageFrom: NgForm): void {
+
+  }
+
 }
