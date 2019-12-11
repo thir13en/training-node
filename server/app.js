@@ -5,10 +5,10 @@ const requestPromise = require('request-promise');
 const cors = require('cors');
 require('dotenv').config();
 
+
 // get app instance
 const app = express();
 
-console.log(process.env.MONGO_DB);
 // database connect
 mongoose.connect(process.env.MONGO_DB, { useNewUrlParser: true, useUnifiedTopology: true });
 
