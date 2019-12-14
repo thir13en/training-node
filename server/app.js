@@ -35,6 +35,7 @@ app.use(bodyParser.json());
 const massageSchema = new mongoose.Schema({
 	type: String,
 	price: Number,
+	created: { type: Date, default: Date.now() },
 });
 
 // compile into a model
