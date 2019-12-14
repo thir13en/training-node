@@ -4,7 +4,7 @@ import copy from './app.copy.json';
 
 import { Observable } from 'rxjs';
 
-import { ApiService } from '../services/api.service';
+import { ApiService } from './services/api.service';
 import { ENDPOINTS } from '../network';
 import { HttpErrorResponse } from '@angular/common/http';
 

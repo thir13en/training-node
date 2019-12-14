@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommonModule } from '@angular/common';
-import { ApiService } from '../services/api.service';
+import { ApiService } from './services/api.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
