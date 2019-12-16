@@ -40,6 +40,8 @@ const massageSchema = new mongoose.Schema({
 // compile into a model
 const Massage = mongoose.model('Massage', massageSchema);
 
+// use Massage.findById to navigate to massage detail
+
 // massages restful routes
 app.get('/massages', (req, res) => {
 	Massage.find(
