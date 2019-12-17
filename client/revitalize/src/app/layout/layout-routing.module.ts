@@ -4,7 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './components/layout/layout.component';
 
 const layoutRoutes: Routes = [
-  { path: '', component: LayoutComponent },
+  {
+    path: '',
+    component: LayoutComponent,
+    loadChildren: () => import('../features/massage/massage.module').then(m => m.MassageModule),
+  },
 ];
 
 @NgModule({
