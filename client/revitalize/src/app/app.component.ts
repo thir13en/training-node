@@ -1,17 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 
 @Component({
   selector: 'app-root',
   template: '<router-outlet></router-outlet>',
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   copy: any;
-
-  ngOnInit(): void {
-    // this.copy = copy;
-    // this.massages$ = this.apiService.get(ENDPOINTS.MASSAGES);
-  }
 
   // submit(newMassageFrom: NgForm): void {
   //   this.apiService.post(
