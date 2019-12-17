@@ -55,7 +55,6 @@
             },
             "styles": [
               "src/styles.scss",
-              "src/scss/index.scss",
               "node_modules/normalize.css/normalize.css"
             ],
             "tsConfig": "tsconfig.app.json"
@@ -101,7 +100,8 @@
             "polyfills": "src/polyfills.ts",
             "scripts": [],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/normalize.css/normalize.css"
             ],
             "tsConfig": "tsconfig.spec.json"
           }
