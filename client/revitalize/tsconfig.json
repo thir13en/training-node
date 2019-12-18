@@ -24,11 +24,12 @@
     "paths": {
       "@environments/*": ["src/environments/*"],
       "@app/*": ["src/app/*"],
-      "@services/*": ["src/app/services/*"],
       "@core/*": ["src/app/core/*"],
-      "@layout/*": ["src/app/layout/*"],
       "@network/*": ["src/app/network/*"],
-      "@utils/*": ["src/app/utils/*"]
+      "@ui/*": ["src/app/ui/*"],
+      "@utils/*": ["src/app/utils/*"],
+      "@layout/*": ["src/app/layout/*"],
+      "@services/*": ["src/app/services/*"]
     }
   },
   "angularCompilerOptions": {

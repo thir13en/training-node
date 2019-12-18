@@ -1,11 +1,18 @@
 import { NgModule } from '@angular/core';
-import { LayoutRoutingModule } from '@layout/layout-routing.module';
-import { LayoutComponent } from './components/layout/layout.component';
+import { CommonModule } from '@angular/common';
 
+import { LayoutRoutingModule } from './layout-routing.module';
+
+import { LayoutComponent } from './components/layout/layout.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 @NgModule({
-  imports: [LayoutRoutingModule],
+  imports: [
+    CommonModule,
+    LayoutRoutingModule,
+    MatToolbarModule,
+  ],
   declarations: [LayoutComponent],
 })
 export class LayoutModule { }
