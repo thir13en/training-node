@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TestingModule } from '@app/testing/testing.module';
+import { MaterialNavigationModule } from '@ui/angular-material/material-navigation.module';
 import { LayoutComponent } from './layout.component';
 
 
@@ -10,7 +11,10 @@ describe('LayoutComponent', () => {
 
   beforeEach(
     async(() => TestBed.configureTestingModule({
-      imports: [TestingModule],
+      imports: [
+        TestingModule,
+        MaterialNavigationModule,
+      ],
       declarations: [LayoutComponent],
     }).compileComponents()
   ));
