@@ -55,6 +55,7 @@
             },
             "styles": [
               "src/styles.scss",
+              "src/app/scss/index.scss",
               "node_modules/normalize.css/normalize.css"
             ],
             "tsConfig": "tsconfig.app.json"
@@ -101,6 +102,7 @@
             "scripts": [],
             "styles": [
               "src/styles.scss",
+              "src/app/scss/index.scss",
               "node_modules/normalize.css/normalize.css"
             ],
             "tsConfig": "tsconfig.spec.json"
