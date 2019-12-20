@@ -8,7 +8,7 @@ const layoutRoutes: Routes = [
   {
     path: '',
     component: LayoutComponent,
-    loadChildren: () => import('../features/massage/massage.module').then(m => m.MassageModule),
+    loadChildren: () => import('../features/massages/massages.module').then(m => m.MassagesModule),
   },
 ];
 

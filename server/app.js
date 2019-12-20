@@ -35,6 +35,8 @@ app.use(bodyParser.json());
 const massageSchema = new mongoose.Schema({
 	type: String,
 	price: Number,
+	description: String,
+	imageUrl: String,
 	created: { type: Date, default: Date.now() },
 });
 const Massage = mongoose.model('Massage', massageSchema);

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { MassageRoutingModule } from './massage-routing.module';
+import { MassagesRoutingModule } from './massages-routing.module';
 
 import { MassagesComponent } from './components/massages/massages.component';
 
@@ -12,10 +12,10 @@ import { ApiService } from '@services/api.service';
   declarations: [MassagesComponent],
   imports: [
     CommonModule,
-    MassageRoutingModule
+    MassagesRoutingModule
   ],
   providers: [
     ApiService,
   ]
 })
-export class MassageModule { }
+export class MassagesModule { }
