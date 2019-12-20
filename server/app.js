@@ -41,6 +41,7 @@ const Massage = mongoose.model('Massage', massageSchema);
 
 // use Massage.findById to find by id in Mongoose
 // use Massage.findByIdAndUpdate to update after finding in Mongoose
+// use Massage.findByIdAndDelete to delete after finding in Mongoose
 
 // massages restful routes
 app.get('/massages', (req, res) => {
