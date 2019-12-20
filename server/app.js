@@ -35,6 +35,8 @@ app.use(bodyParser.json());
 const massageSchema = new mongoose.Schema({
 	type: String,
 	price: Number,
+	description: String,
+	imageUrl: String,
 	created: { type: Date, default: Date.now() },
 });
 const Massage = mongoose.model('Massage', massageSchema);
@@ -55,11 +57,8 @@ app.get('/massages', (req, res) => {
 });
 
 app.post('/massages', (req, res) => {
-	const type = req.body.type;
-	const price = req.body.price;
-
 	Massage.create(
-		{ type, price },
+		req.body,
 		(err, massage) => err ?
 			console.log('something went wrong', err) :
 			res.send({

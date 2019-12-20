@@ -1,0 +1,13 @@
+<section *ngIf="massages$ | async as massages" id="massages" fxLayoutAlign="center">
+  <mat-card *ngFor="let massage of massages" class="w-25">
+    <mat-card-header>
+      <mat-card-title>{{ massage.type }}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image [attr.src]="massage.imageUrl" alt="descriptive image of a massage">
+    <mat-card-content>
+      <p>
+        {{ massage.description }}
+      </p>
+    </mat-card-content>
+  </mat-card>
+</section>

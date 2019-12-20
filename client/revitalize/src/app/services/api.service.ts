@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
-import { Observable } from 'rxjs';
+import { Observable, ObservableInput, throwError } from 'rxjs';
 
 import { environment } from '@environments/environment';
 import { ENDPOINTS } from '@network/endpoints.enum';
+import { catchError } from 'rxjs/operators';
 
 
 @Injectable()
@@ -16,12 +17,12 @@ export class ApiService {
   get(urlFragment: ENDPOINTS, params?: { param: string, value: string }[]): Observable<any> {
     const url = this.getFullUrlWithPath(urlFragment);
 
-    if (params) {
-      const formattedParams = this.addQueryParams(params);
-      return this.http.get(url, { params: formattedParams });
-    } else {
-      return this.http.get(url);
-    }
+    return this.http.get(
+      url,
+      { params: params ? this.addQueryParams(params) : undefined },
+    ).pipe(
+      catchError((err: Error): ObservableInput<any> => throwError(err)),
+    );
   }
 
   post(urlFragment: ENDPOINTS, payload: any): Observable<any> {
