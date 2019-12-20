@@ -5,14 +5,15 @@
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
-    "downlevelIteration": true,
-    "experimentalDecorators": true,
     "module": "esnext",
     "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2015",
-    "allowSyntheticDefaultImports": true,
+    "target": "es5",
+    "noUnusedLocals": true,
     "resolveJsonModule": true,
+    "esModuleInterop": true,
     "typeRoots": [
       "node_modules/@types"
     ],
@@ -21,7 +22,14 @@
       "dom"
     ],
     "paths": {
-      "@network": ["src/app/network/*"]
+      "@environments/*": ["src/environments/*"],
+      "@app/*": ["src/app/*"],
+      "@core/*": ["src/app/core/*"],
+      "@network/*": ["src/app/network/*"],
+      "@ui/*": ["src/app/ui/*"],
+      "@utils/*": ["src/app/utils/*"],
+      "@layout/*": ["src/app/layout/*"],
+      "@services/*": ["src/app/services/*"]
     }
   },
   "angularCompilerOptions": {
