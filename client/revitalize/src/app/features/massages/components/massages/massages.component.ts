@@ -3,6 +3,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 import { ENDPOINTS } from '@network/endpoints.enum';
 import { ApiService } from '@services/api.service';
+import { catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -16,9 +18,8 @@ export class MassagesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.apiService.get(ENDPOINTS.MASSAGES).subscribe(
-      (res: any): void => console.log(res),
-      (err: HttpErrorResponse): void => console.log(err),
+    this.apiService.get(ENDPOINTS.MASSAGES).pipe(
+      catchError((err: Observable<Error>) => err.subscribe(err => console.log(err)))
     );
   }
 
