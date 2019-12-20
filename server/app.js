@@ -57,11 +57,8 @@ app.get('/massages', (req, res) => {
 });
 
 app.post('/massages', (req, res) => {
-	const type = req.body.type;
-	const price = req.body.price;
-
 	Massage.create(
-		{ type, price },
+		req.body,
 		(err, massage) => err ?
 			console.log('something went wrong', err) :
 			res.send({
