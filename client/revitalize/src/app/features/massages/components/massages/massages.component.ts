@@ -1,8 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
 
 import { ENDPOINTS } from '@network/endpoints.enum';
 import { ApiService } from '@services/api.service';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -10,16 +10,14 @@ import { ApiService } from '@services/api.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MassagesComponent implements OnInit {
+  massages$: Observable<any>;
 
   constructor(
     private apiService: ApiService
   ) {}
 
   ngOnInit() {
-    this.apiService.get(ENDPOINTS.MASSAGES).subscribe(
-      (res: any): void => console.log(res),
-      (err: HttpErrorResponse): void => console.log(err),
-    );
+    this.massages$ = this.apiService.get(ENDPOINTS.MASSAGES);
   }
 
 }
