@@ -1,9 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
 
 import { ENDPOINTS } from '@network/endpoints.enum';
 import { ApiService } from '@services/api.service';
-import { catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 
@@ -12,15 +10,14 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MassagesComponent implements OnInit {
+  massages$: Observable<any>;
 
   constructor(
     private apiService: ApiService
   ) {}
 
   ngOnInit() {
-    this.apiService.get(ENDPOINTS.MASSAGES).pipe(
-      catchError((err: Observable<Error>) => err.subscribe(err => console.log(err)))
-    );
+    this.massages$ = this.apiService.get(ENDPOINTS.MASSAGES);
   }
 
 }
