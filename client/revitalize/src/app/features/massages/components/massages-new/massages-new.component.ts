@@ -7,7 +7,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MassagesNewComponent implements OnInit {
-
+  // TODO: create mixin to dynamically add margins
   constructor() { }
 
   ngOnInit() {
