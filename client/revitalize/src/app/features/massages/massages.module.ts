@@ -12,7 +12,10 @@ import { MassagesNewComponent } from './components/massages-new/massages-new.com
 
 
 @NgModule({
-  declarations: [MassagesComponent, MassagesNewComponent],
+  declarations: [
+    MassagesComponent,
+    MassagesNewComponent
+  ],
   imports: [
     SharedModule,
     MaterialLayoutModule,

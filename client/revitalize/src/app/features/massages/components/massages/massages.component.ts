@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import copy from './massages.copy.json';
 
 import { ENDPOINTS } from '@network/endpoints.enum';
 import { ApiService } from '@services/api.service';
@@ -10,6 +11,8 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MassagesComponent implements OnInit {
+  copy: any;
+
   massages$: Observable<any>;
 
   constructor(
@@ -17,6 +20,7 @@ export class MassagesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.copy = copy;
     this.massages$ = this.apiService.get(ENDPOINTS.MASSAGES);
   }
 
