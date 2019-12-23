@@ -8,10 +8,11 @@ import { SharedModule } from '@app/shared/shared.module';
 import { MassagesComponent } from './components/massages/massages.component';
 
 import { ApiService } from '@services/api.service';
+import { MassagesNewComponent } from './components/massages-new/massages-new.component';
 
 
 @NgModule({
-  declarations: [MassagesComponent],
+  declarations: [MassagesComponent, MassagesNewComponent],
   imports: [
     SharedModule,
     MaterialLayoutModule,
