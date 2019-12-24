@@ -1,0 +1,11 @@
+{
+  "TITLE": "Add a new massage",
+  "PLACEHOLDERS": {
+    "TYPE": "Type of massage...",
+    "PRICE": "Price",
+    "IMG_URL": "Image url"
+  },
+  "ACTIONS": {
+    "SUBMIT": "Add massage"
+  }
+}

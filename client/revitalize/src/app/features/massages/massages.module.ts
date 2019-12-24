@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { MaterialLayoutModule } from '@ui/angular-material/material-layout.module';
+import { MaterialFormControlsModule } from '@ui/angular-material/material-form-controls.module';
 import { MaterialButtonsIndicatorsModule } from '@ui/angular-material/material-buttons-indicators.module';
 import { MassagesRoutingModule } from './massages-routing.module';
 import { SharedModule } from '@app/shared/shared.module';
@@ -12,15 +13,16 @@ import { MassagesNewComponent } from './components/massages-new/massages-new.com
 
 
 @NgModule({
-  declarations: [
-    MassagesComponent,
-    MassagesNewComponent
-  ],
   imports: [
     SharedModule,
     MaterialLayoutModule,
+    MaterialFormControlsModule,
     MaterialButtonsIndicatorsModule,
     MassagesRoutingModule,
+  ],
+  declarations: [
+    MassagesComponent,
+    MassagesNewComponent,
   ],
   providers: [
     ApiService,

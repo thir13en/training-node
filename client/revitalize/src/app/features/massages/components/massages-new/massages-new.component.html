@@ -1,1 +1,54 @@
-<p>massages-new works!</p>
+<section id="massages-new" class="mt64" fxLayoutAlign="center">
+  <mat-card class="w-50">
+    <mat-card-header>
+      <mat-card-title>{{ copy.TITLE }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form #newMassageForm="ngForm" fxLayout="column" (ngSubmit)="addNewMassage(newMassageForm.value)">
+        <mat-form-field hideRequiredMarker>
+          <input
+            matInput
+            type="text"
+            id="type"
+            name="type"
+            [placeholder]="copy.PLACEHOLDERS.TYPE"
+            ngModel
+            required
+          />
+        </mat-form-field>
+        <mat-form-field hideRequiredMarker>
+          <input
+            matInput
+            type="number"
+            id="price"
+            name="price"
+            min="5"
+            max="300"
+            [placeholder]="copy.PLACEHOLDERS.PRICE"
+            ngModel
+            required
+          />
+        </mat-form-field>
+        <mat-form-field hideRequiredMarker>
+          <input
+            matInput
+            type="text"
+            id="imgUrl"
+            name="imgUrl"
+            [placeholder]="copy.PLACEHOLDERS.IMG_URL"
+            ngModel
+            required
+          />
+        </mat-form-field>
+        <div>
+          <button
+            mat-button
+            type="submit"
+            color="primary"
+            [disabled]="newMassageForm.invalid"
+          >{{ copy.ACTIONS.SUBMIT }}</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</section>
