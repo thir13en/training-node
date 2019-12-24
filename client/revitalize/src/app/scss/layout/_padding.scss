@@ -1,0 +1,41 @@
+@mixin p($key: '') {
+  // set direction using key parameter
+  $direction: '';
+  @if($key == 't') {
+    $direction: '-top';
+  } @else if($key == 'r') {
+    $direction: '-right';
+  } @else if($key == 'b') {
+    $direction: '-bottom';
+  } @else if($key == 'l') {
+    $direction: '-left';
+  }
+  // loop to set incremental padding
+  $i: 0;
+  @while $i < 24 {
+    .p#{$key}#{$i} {
+      padding#{$direction}: #{$i}px !important;
+    }
+    $i: $i + 4;
+  }
+  @while $i < 48 {
+    .p#{$key}#{$i} {
+      padding#{$direction}: #{$i}px !important;
+    }
+    $i: $i + 8;
+  }
+  @while $i <= 128 {
+    .p#{$key}#{$i} {
+      padding#{$direction}: #{$i}px !important;
+    }
+    $i: $i + 16;
+  }
+}
+
+html body {
+  @include p();
+  @include p(t);
+  @include p(r);
+  @include p(b);
+  @include p(l);
+}
