@@ -1,3 +1,4 @@
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -9,6 +10,7 @@ import { API_SERVICE_MOCK_PROVIDER } from './mocks/api.service.mock';
 
 @NgModule({
   exports: [
+    NoopAnimationsModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
