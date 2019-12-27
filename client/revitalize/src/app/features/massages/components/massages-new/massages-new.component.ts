@@ -1,5 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import copy from './massages-new.copy.json';
+
+import { ApiService } from '@services/api.service';
+import { ENDPOINTS } from '@app/network';
 
 
 @Component({
@@ -11,13 +14,16 @@ import copy from './massages-new.copy.json';
 export class MassagesNewComponent implements OnInit {
   copy: any;
 
+  constructor(
+    private apiService: ApiService,
+  ) {}
+
   ngOnInit() {
     this.copy = copy;
-    console.log(copy);
   }
 
   addNewMassage(newMassage: { type: string, price: number, imgUrl: string }): void {
-    console.log(newMassage);
+    this.apiService.post(ENDPOINTS.MASSAGES, newMassage);
   }
 
 }

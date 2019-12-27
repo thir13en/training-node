@@ -33,19 +33,29 @@
           <input
             matInput
             type="text"
-            id="imgUrl"
-            name="imgUrl"
+            id="imageUrl"
+            name="imageUrl"
             [placeholder]="copy.PLACEHOLDERS.IMG_URL"
             ngModel
             required
           />
+        </mat-form-field>
+        <mat-form-field hideRequiredMarker>
+          <textarea
+            matInput
+            id="description"
+            name="description"
+            [placeholder]="copy.PLACEHOLDERS.DESC"
+            ngModel
+            required
+          ></textarea>
         </mat-form-field>
         <div>
           <button
             mat-button
             type="submit"
             color="primary"
-            [disabled]="newMassageForm.invalid"
+            [disabled]="newMassageForm.invalid || newMassageForm.value.price < 5 || newMassageForm.value.price > 200"
           >{{ copy.ACTIONS.SUBMIT }}</button>
         </div>
       </form>
