@@ -1,15 +1,17 @@
-<section *ngIf="massages$ | async as massages" id="massages" fxLayout="column" fxLayoutAlign="start center">
-  <mat-card *ngFor="let massage of massages" class="w-25">
-    <mat-card-header>
-      <mat-card-title>{{ massage.type }}</mat-card-title>
-    </mat-card-header>
-    <img mat-card-image [attr.src]="massage.imageUrl" alt="descriptive image of a massage">
-    <mat-card-content>
-      <p>
-        {{ massage.description }}
-      </p>
-    </mat-card-content>
-  </mat-card>
+<section *ngIf="massages$ | async as massages" fxLayout="column">
+  <div fxLayout fxLayoutGap="16px">
+    <mat-card *ngFor="let massage of massages" class="w-25 mt16">
+      <mat-card-header>
+        <mat-card-title>{{ massage.type }}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image [attr.src]="massage.imageUrl" alt="descriptive image of a massage">
+      <mat-card-content>
+        <p>
+          {{ massage.description }}
+        </p>
+      </mat-card-content>
+    </mat-card>
+  </div>
   <div class="w-25">
     <button mat-button color="primary" routerLink="new">{{ copy.ACTIONS.ADD_NEW }}</button>
   </div>
