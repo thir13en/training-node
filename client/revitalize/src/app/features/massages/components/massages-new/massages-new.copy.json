@@ -1,0 +1,12 @@
+{
+  "TITLE": "Add a new massage",
+  "PLACEHOLDERS": {
+    "TYPE": "Type of massage...",
+    "PRICE": "Price (€5 - €200)",
+    "IMG_URL": "Image url",
+    "DESC": "Description..."
+  },
+  "ACTIONS": {
+    "SUBMIT": "Add massage"
+  }
+}

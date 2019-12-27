@@ -35,8 +35,8 @@ app.use(bodyParser.json());
 const massageSchema = new mongoose.Schema({
 	type: String,
 	price: Number,
-	description: String,
 	imageUrl: String,
+	description: String,
 	created: { type: Date, default: Date.now() },
 });
 const Massage = mongoose.model('Massage', massageSchema);
@@ -49,29 +49,26 @@ const Massage = mongoose.model('Massage', massageSchema);
 app.get('/massages', (req, res) => {
 	Massage.find(
 		{},
-		(err, massages) =>
-			err ?
+		(err, massages) => err ?
 				console.log('there was an error retrieving the massages') :
 				res.send(massages)
 	);
 });
-
+app.get('/massage/:id', (req, res) => {
+	Massage.findById(
+		req.params.id,
+		(err, massage) => err ?
+			console.log('there was an error retrieving the massage with id: ', req.params.id) :
+			res.send(massage)
+	);
+});
 app.post('/massages', (req, res) => {
 	Massage.create(
 		req.body,
 		(err, massage) => err ?
 			console.log('something went wrong', err) :
-			res.send({
-				message: 'new massage added',
-				massage
-			})
+			res.send({ message: 'new massage added', massage })
 	);
-
-});
-
-app.get('/massage/:type', (req, res) => {
-	const massageType = req.params.type;
-	res.send(massageType);
 });
 
 app.get('*', (req, res) => res.send('YOU ARE THE BEST OUT THERE!'));

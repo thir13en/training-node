@@ -26,6 +26,7 @@
       "@app/*": ["src/app/*"],
       "@core/*": ["src/app/core/*"],
       "@network/*": ["src/app/network/*"],
+      "@routes/*": ["src/app/routes/*"],
       "@ui/*": ["src/app/ui/*"],
       "@utils/*": ["src/app/utils/*"],
       "@layout/*": ["src/app/layout/*"],

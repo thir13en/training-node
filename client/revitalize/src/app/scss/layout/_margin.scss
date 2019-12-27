@@ -1,0 +1,41 @@
+@mixin m($key: '') {
+  // set direction using key parameter
+  $direction: '';
+  @if($key == 't') {
+    $direction: '-top';
+  } @else if($key == 'r') {
+    $direction: '-right';
+  } @else if($key == 'b') {
+    $direction: '-bottom';
+  } @else if($key == 'l') {
+    $direction: '-left';
+  }
+  // loop to set incremental margins
+  $i: 0;
+  @while $i < 24 {
+    .m#{$key}#{$i} {
+      margin#{$direction}: #{$i}px !important;
+    }
+    $i: $i + 4;
+  }
+  @while $i < 48 {
+    .m#{$key}#{$i} {
+      margin#{$direction}: #{$i}px !important;
+    }
+    $i: $i + 8;
+  }
+  @while $i <= 128 {
+    .m#{$key}#{$i} {
+      margin#{$direction}: #{$i}px !important;
+    }
+    $i: $i + 16;
+  }
+}
+
+html body {
+  @include m();
+  @include m(t);
+  @include m(r);
+  @include m(b);
+  @include m(l);
+}
