@@ -4,6 +4,7 @@ import copy from './massages.copy.json';
 import { ENDPOINTS } from '@network/endpoints.enum';
 import { ApiService } from '@services/api.service';
 import { Observable } from 'rxjs';
+import { tap } from "rxjs/operators";
 
 
 @Component({
@@ -21,7 +22,9 @@ export class MassagesComponent implements OnInit {
 
   ngOnInit() {
     this.copy = copy;
-    this.massages$ = this.apiService.get(ENDPOINTS.MASSAGES);
+    this.massages$ = this.apiService.get(ENDPOINTS.MASSAGES).pipe(
+      tap(console.log),
+    );
   }
 
 }

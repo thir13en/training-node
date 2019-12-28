@@ -10,6 +10,7 @@ import { MassagesComponent } from './components/massages/massages.component';
 
 import { ApiService } from '@services/api.service';
 import { MassagesNewComponent } from './components/massages-new/massages-new.component';
+import { MassagesEditComponent } from './components/massages-edit/massages-edit.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { MassagesNewComponent } from './components/massages-new/massages-new.com
   declarations: [
     MassagesComponent,
     MassagesNewComponent,
+    MassagesEditComponent,
   ],
   providers: [
     ApiService,
