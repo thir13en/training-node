@@ -11,6 +11,7 @@ import { MassagesComponent } from './components/massages/massages.component';
 import { ApiService } from '@services/api.service';
 import { MassagesNewComponent } from './components/massages-new/massages-new.component';
 import { MassagesEditComponent } from './components/massages-edit/massages-edit.component';
+import { MassagesDetailComponent } from './components/massages-detail/massages-detail.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { MassagesEditComponent } from './components/massages-edit/massages-edit.
     MassagesComponent,
     MassagesNewComponent,
     MassagesEditComponent,
+    MassagesDetailComponent,
   ],
   providers: [
     ApiService,

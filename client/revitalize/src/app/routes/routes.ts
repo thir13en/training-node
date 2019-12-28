@@ -2,6 +2,8 @@ export const ROUTE_FRAGMENTS: any = {
   ROOT: '',
   MASSAGES: 'massages',
   NEW: 'new',
+  EDIT: 'edit',
+  IDENTIFIER: ':id',
 };
 
 export const ROUTES: any = {
