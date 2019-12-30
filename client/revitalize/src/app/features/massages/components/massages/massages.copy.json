@@ -1,5 +1,7 @@
 {
   "ACTIONS": {
-    "ADD_NEW": "Create"
+    "ADD_NEW": "Create",
+    "VIEW": "View",
+    "EDIT": "Edit"
   }
 }
