@@ -1,10 +1,11 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import copy from './massages.copy.json';
 
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+
 import { ENDPOINTS } from '@network/endpoints.enum';
 import { ApiService } from '@services/api.service';
-import { Observable } from 'rxjs';
-import { tap } from "rxjs/operators";
 
 
 @Component({
