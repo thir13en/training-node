@@ -44,11 +44,8 @@ export class ApiService {
       params = new HttpParams();
 
       payload.forEach((el: { param: string, value: string }) =>
-        params = params.keys().length ?
-          params.set(el.param, el.value) :
-          params.append(el.param, el.value)
+        params = params.keys().length ? params.set(el.param, el.value) : params.append(el.param, el.value)
       );
-
     }
 
     return params;
