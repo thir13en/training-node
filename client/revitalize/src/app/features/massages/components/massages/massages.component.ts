@@ -2,11 +2,12 @@ import { Component, OnInit, ChangeDetectionStrategy, Inject } from '@angular/cor
 import copy from './massages.copy.json';
 
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { ROUTE_FRAGMENTS_INJECTABLE } from '@routes/routes';
 import { ENDPOINTS } from '@network/endpoints.enum';
 import { ApiService } from '@services/api.service';
+import { MassageModel } from '@core/models';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { ApiService } from '@services/api.service';
 export class MassagesComponent implements OnInit {
   copy: any;
 
-  massages$: Observable<any>;
+  massages$: Observable<MassageModel[]>;
 
   constructor(
     private apiService: ApiService,
@@ -25,9 +26,9 @@ export class MassagesComponent implements OnInit {
 
   ngOnInit() {
     this.copy = copy;
-    // TODO: create massage model
+
     this.massages$ = this.apiService.get(ENDPOINTS.MASSAGES).pipe(
-      tap(console.log),
+      map((res: any[]): MassageModel[] => res.map((r: any): MassageModel => new MassageModel(r))),
     );
   }
 
