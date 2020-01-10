@@ -30,6 +30,7 @@ export class MassagesComponent implements OnInit {
     this.massages$ = this.apiService.get(ENDPOINTS.MASSAGES).pipe(
       map((res: any[]): MassageModel[] => res.map((r: any): MassageModel => new MassageModel(r))),
     );
+
   }
 
 }
