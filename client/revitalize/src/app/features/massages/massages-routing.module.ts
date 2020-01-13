@@ -14,7 +14,7 @@ const routes: Routes = [
       { path: '', pathMatch: 'full', component: MassagesComponent },
       { path: ROUTE_FRAGMENTS.NEW, component: MassagesNewComponent },
       {
-        path: ROUTE_FRAGMENTS.IDENTIFIER,
+        path: ROUTE_FRAGMENTS.MASSAGE_IDENTIFIER,
         children: [
           { path: '', pathMatch: 'full', component: MassagesDetailComponent },
           { path: ROUTE_FRAGMENTS.EDIT, component: MassagesEditComponent }

@@ -25,7 +25,7 @@ export class MassagesNewComponent implements OnInit {
   }
 
   addNewMassage(newMassage: { type: string, price: number, imgUrl: string }): void {
-    this.apiService.post(ENDPOINTS.MASSAGES, newMassage).subscribe(
+    this.apiService.post({ path: ENDPOINTS.MASSAGES, payload: newMassage}).subscribe(
       (res: any) => this.router.navigateByUrl(routing.ROUTES.MASSAGES),
       err => console.error(err),
     );

@@ -27,7 +27,7 @@ export class MassagesComponent implements OnInit {
   ngOnInit() {
     this.copy = copy;
 
-    this.massages$ = this.apiService.get(ENDPOINTS.MASSAGES).pipe(
+    this.massages$ = this.apiService.get({ path: ENDPOINTS.MASSAGES }).pipe(
       map((res: any[]): MassageModel[] => res.map((r: any): MassageModel => new MassageModel(r))),
     );
 

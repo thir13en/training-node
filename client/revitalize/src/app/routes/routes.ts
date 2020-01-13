@@ -5,7 +5,7 @@ export const ROUTE_FRAGMENTS: any = {
   MASSAGES: 'massages',
   NEW: 'new',
   EDIT: 'edit',
-  IDENTIFIER: ':id',
+  MASSAGE_IDENTIFIER: ':massageId',
 };
 
 export const ROUTES: any = {
