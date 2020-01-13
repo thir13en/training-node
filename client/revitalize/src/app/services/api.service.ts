@@ -16,6 +16,7 @@ export class ApiService {
   ) {}
 
   get(data: NetworkInterfaces.Get): Observable<any> {
+    // TODO: Make sure we get the correct param cosntruction service
     const url = this.getFullUrlWithPath(data.path, data.pathParams);
 
     return this.http.get(
@@ -33,7 +34,6 @@ export class ApiService {
   }
 
   private getFullUrlWithPath(urlFragment: ENDPOINTS, pathParams: (string | number)[]): string {
-    // TODO: create service to include url path params
     return [environment.apiUrl, urlFragment].join('/');
   }
 
