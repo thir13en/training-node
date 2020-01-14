@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { ROUTE_FRAGMENTS_INJECTABLE } from '@routes/routes';
-import { ENDPOINTS } from '@network/endpoints.enum';
+import { ENDPOINTS } from '@network/endpoints';
 import { ApiService } from '@services/api.service';
 import { MassageModel } from '@core/models';
 

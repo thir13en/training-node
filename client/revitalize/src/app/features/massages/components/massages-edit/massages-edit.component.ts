@@ -24,6 +24,7 @@ export class MassagesEditComponent implements OnInit {
 
   ngOnInit() {
     const massageId: string = this.route.snapshot.params[ROUTE_FRAGMENTS.MASSAGE_IDENTIFIER.replace(':', '')];
+    console.log(massageId);
     this.apiService.get({ path: ENDPOINTS.MASSAGES_DETAIL, pathParams: [massageId] });
   }
 

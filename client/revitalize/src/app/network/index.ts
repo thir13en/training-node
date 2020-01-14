@@ -1,2 +1,3 @@
-export * from './endpoints.enum';
+import * as NetworkUtils from './endpoints';
 
+export { NetworkUtils };

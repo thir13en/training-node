@@ -5,8 +5,8 @@ import { Observable, ObservableInput, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { environment } from '@environments/environment';
-import { ENDPOINTS } from '@network/endpoints.enum';
 import { NetworkInterfaces } from '@network/interfaces';
+import { ErrorCodes } from '@core/errors';
 
 
 @Injectable()
@@ -16,7 +16,6 @@ export class ApiService {
   ) {}
 
   get(data: NetworkInterfaces.Get): Observable<any> {
-    // TODO: Make sure we get the correct param cosntruction service
     const url = this.getFullUrlWithPath(data.path, data.pathParams);
 
     return this.http.get(
@@ -33,8 +32,19 @@ export class ApiService {
     return this.http.post(url, data.payload);
   }
 
-  private getFullUrlWithPath(urlFragment: ENDPOINTS, pathParams: (string | number)[]): string {
+  private getFullUrlWithPath(urlFragment: string, pathParams: (string | number)[]): string {
+    const paramCount: number = (urlFragment.match(/%s/g) || []).length;
+    // TODO: create centralized error managing
+    if (paramCount !== pathParams.length) {
+      throw new Error(ErrorCodes.e001);
+    } else {
+
+    }
     return [environment.apiUrl, urlFragment].join('/');
+  }
+
+  private addParamsToPath(path: string, params: (string | number)[]): string {
+
   }
 
   private addQueryParams(payload: { param: string, value: string }[]): HttpParams | undefined {
