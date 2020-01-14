@@ -5,8 +5,8 @@ import { Observable, ObservableInput, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { environment } from '@environments/environment';
-import { NetworkInterfaces } from '@network/interfaces';
 import { ErrorCodes } from '@core/errors';
+import { NetworkInterfaces } from '@network/interfaces';
 
 
 @Injectable()
@@ -44,7 +44,7 @@ export class ApiService {
   }
 
   private addParamsToPath(path: string, params: (string | number)[]): string {
-
+    // TODO: add path params
   }
 
   private addQueryParams(payload: { param: string, value: string }[]): HttpParams | undefined {
