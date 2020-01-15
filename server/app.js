@@ -54,7 +54,7 @@ app.get('/massages', (req, res) => {
 				res.send(massages)
 	);
 });
-app.get('/massage/:id', (req, res) => {
+app.get('/massages/:id', (req, res) => {
 	Massage.findById(
 		req.params.id,
 		(err, massage) => err ?

@@ -6,6 +6,7 @@ import { catchError } from 'rxjs/operators';
 
 import { environment } from '@environments/environment';
 import { ErrorCodes } from '@core/errors';
+import { NetworkUtils } from '@app/network';
 import { NetworkInterfaces } from '@network/interfaces';
 
 
@@ -29,22 +30,31 @@ export class ApiService {
   post(data: NetworkInterfaces.POST): Observable<any> {
     const url = this.getFullUrlWithPath(data.path, data.pathParams);
 
-    return this.http.post(url, data.payload);
+    return this.http.post(url, data.payload).pipe(
+      catchError((err: Error): ObservableInput<any> => throwError(err)),
+    );
   }
 
-  private getFullUrlWithPath(urlFragment: string, pathParams: (string | number)[]): string {
-    const paramCount: number = (urlFragment.match(/%s/g) || []).length;
-    // TODO: create centralized error managing
-    if (paramCount !== pathParams.length) {
-      throw new Error(ErrorCodes.e001);
-    } else {
+  private getFullUrlWithPath(urlFragment: string, pathParams: (string | number)[] = []): string {
+    if (pathParams) {
+      const paramCount: number = (urlFragment.match(/%s/g) || []).length;
 
+      // TODO: create centralized error managing
+      if (paramCount !== pathParams.length) {
+        throw new Error(ErrorCodes.e001);
+      } else {
+        return [environment.apiUrl, this.addParamsToPath(urlFragment, pathParams)].join('/');
+      }
     }
-    return [environment.apiUrl, urlFragment].join('/');
   }
 
   private addParamsToPath(path: string, params: (string | number)[]): string {
-    // TODO: add path params
+
+    params.forEach((param: string): void => {
+      path = path.replace(NetworkUtils.PATH_PARAM_PLACEHOLDER, param);
+    });
+
+    return path;
   }
 
   private addQueryParams(payload: { param: string, value: string }[]): HttpParams | undefined {

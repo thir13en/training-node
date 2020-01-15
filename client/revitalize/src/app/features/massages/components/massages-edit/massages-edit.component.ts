@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { MassageModel } from '@core/models';
-import { ENDPOINTS } from '@app/network';
+import { NetworkUtils } from '@app/network';
 import { ROUTE_FRAGMENTS } from '@routes/routes';
 import { ApiService } from '@services/api.service';
 
@@ -24,8 +24,8 @@ export class MassagesEditComponent implements OnInit {
 
   ngOnInit() {
     const massageId: string = this.route.snapshot.params[ROUTE_FRAGMENTS.MASSAGE_IDENTIFIER.replace(':', '')];
-    console.log(massageId);
-    this.apiService.get({ path: ENDPOINTS.MASSAGES_DETAIL, pathParams: [massageId] });
+
+    this.massage$ = this.apiService.get({ path: NetworkUtils.ENDPOINTS.MASSAGES_DETAIL, pathParams: [massageId] });
   }
 
 }

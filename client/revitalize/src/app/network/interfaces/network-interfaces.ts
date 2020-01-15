@@ -1,14 +1,11 @@
-import { ENDPOINTS } from '@app/network';
-
-
 export interface Get {
-  path: ENDPOINTS;
+  path: string;
   pathParams?: (string | number)[];
   queryParams?: { param: string, value: string }[];
 }
 
 export interface POST {
-  path: ENDPOINTS;
+  path: string;
   payload: any;
   pathParams?: (string | number)[];
 }

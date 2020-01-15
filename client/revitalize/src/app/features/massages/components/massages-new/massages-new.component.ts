@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import copy from './massages-new.copy.json';
 
 import { ApiService } from '@services/api.service';
-import { ENDPOINTS } from '@app/network';
+import { NetworkUtils } from '@app/network';
 import { routing } from '@app/routes';
 
 
@@ -25,7 +25,7 @@ export class MassagesNewComponent implements OnInit {
   }
 
   addNewMassage(newMassage: { type: string, price: number, imgUrl: string }): void {
-    this.apiService.post({ path: ENDPOINTS.MASSAGES, payload: newMassage}).subscribe(
+    this.apiService.post({ path: NetworkUtils.ENDPOINTS.MASSAGES, payload: newMassage}).subscribe(
       (res: any) => this.router.navigateByUrl(routing.ROUTES.MASSAGES),
       err => console.error(err),
     );
