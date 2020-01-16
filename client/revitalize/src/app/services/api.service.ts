@@ -5,7 +5,7 @@ import { Observable, ObservableInput, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { environment } from '@environments/environment';
-import { ErrorCodes } from '@core/errors';
+import { ErrorCodes, errorHandler } from '@core/errors';
 import { NetworkUtils } from '@app/network';
 import { NetworkInterfaces } from '@network/interfaces';
 
@@ -36,16 +36,11 @@ export class ApiService {
   }
 
   private getFullUrlWithPath(urlFragment: string, pathParams: (string | number)[] = []): string {
-    if (pathParams) {
-      const paramCount: number = (urlFragment.match(/%s/g) || []).length;
+    const paramCount: number = (urlFragment.match(/%s/g) || []).length;
 
-      // TODO: create centralized error managing
-      if (paramCount !== pathParams.length) {
-        throw new Error(ErrorCodes.e001);
-      } else {
-        return [environment.apiUrl, this.addParamsToPath(urlFragment, pathParams)].join('/');
-      }
-    }
+    errorHandler(paramCount !== pathParams.length, ErrorCodes.e000);
+
+    return [environment.apiUrl, this.addParamsToPath(urlFragment, pathParams)].join('/');
   }
 
   private addParamsToPath(path: string, params: (string | number)[]): string {

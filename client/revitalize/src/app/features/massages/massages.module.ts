@@ -9,7 +9,7 @@ import { SharedModule } from '@app/shared/shared.module';
 import { MassagesComponent } from './components/massages/massages.component';
 
 import { ApiService } from '@services/api.service';
-import { MassagesNewComponent } from './components/massages-new/massages-new.component';
+import { MassagesComposerComponent } from './components/massages-composer/massages-composer.component';
 import { MassagesEditComponent } from './components/massages-edit/massages-edit.component';
 import { MassagesDetailComponent } from './components/massages-detail/massages-detail.component';
 
@@ -24,7 +24,7 @@ import { MassagesDetailComponent } from './components/massages-detail/massages-d
   ],
   declarations: [
     MassagesComponent,
-    MassagesNewComponent,
+    MassagesComposerComponent,
     MassagesEditComponent,
     MassagesDetailComponent,
   ],

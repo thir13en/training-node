@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import copy from './massages-new.copy.json';
+import copy from './massages-composer.copy.json';
 
 import { ApiService } from '@services/api.service';
 import { NetworkUtils } from '@app/network';
@@ -9,10 +9,10 @@ import { routing } from '@app/routes';
 
 @Component({
   selector: 'app-massages-new',
-  templateUrl: './massages-new.component.html',
+  templateUrl: './massages-composer.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MassagesNewComponent implements OnInit {
+export class MassagesComposerComponent implements OnInit {
   copy: any;
 
   constructor(
