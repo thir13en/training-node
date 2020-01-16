@@ -13,6 +13,7 @@ import { routing } from '@app/routes';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MassagesComposerComponent implements OnInit {
+  // TODO: turn this into a create/edit component
   copy: any;
 
   constructor(
