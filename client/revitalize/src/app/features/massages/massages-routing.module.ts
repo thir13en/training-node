@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { ROUTE_FRAGMENTS } from '@routes/routes';
 import { MassagesComponent } from './components/massages/massages.component';
 import { MassagesComposerComponent } from './components/massages-composer/massages-composer.component';
-import { MassagesEditComponent } from './components/massages-edit/massages-edit.component';
 import { MassagesDetailComponent } from './components/massages-detail/massages-detail.component';
 
 
@@ -17,7 +16,7 @@ const routes: Routes = [
         path: ROUTE_FRAGMENTS.MASSAGE_IDENTIFIER,
         children: [
           { path: '', pathMatch: 'full', component: MassagesDetailComponent },
-          { path: ROUTE_FRAGMENTS.EDIT, component: MassagesEditComponent }
+          { path: ROUTE_FRAGMENTS.EDIT, component: MassagesComposerComponent }
         ]
       }
   ]},

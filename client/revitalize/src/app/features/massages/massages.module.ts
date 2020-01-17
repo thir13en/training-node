@@ -7,11 +7,10 @@ import { MassagesRoutingModule } from './massages-routing.module';
 import { SharedModule } from '@app/shared/shared.module';
 
 import { MassagesComponent } from './components/massages/massages.component';
+import { MassagesComposerComponent } from './components/massages-composer/massages-composer.component';
+import { MassagesDetailComponent } from './components/massages-detail/massages-detail.component';
 
 import { ApiService } from '@services/api.service';
-import { MassagesComposerComponent } from './components/massages-composer/massages-composer.component';
-import { MassagesEditComponent } from './components/massages-edit/massages-edit.component';
-import { MassagesDetailComponent } from './components/massages-detail/massages-detail.component';
 
 
 @NgModule({
@@ -25,7 +24,6 @@ import { MassagesDetailComponent } from './components/massages-detail/massages-d
   declarations: [
     MassagesComponent,
     MassagesComposerComponent,
-    MassagesEditComponent,
     MassagesDetailComponent,
   ],
   providers: [
