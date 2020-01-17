@@ -17,7 +17,7 @@ import { MassageModel } from '@core/models';
 })
 export class MassagesComposerComponent implements OnInit {
   copy: any;
-
+  // TODO: pass template driven form to reactive form
   // if we are in edit mode this will be true
   editMode: boolean;
   // the item we are editing in case we are in edit mode, otherwise undefined
