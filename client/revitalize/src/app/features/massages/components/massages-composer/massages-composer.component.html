@@ -4,15 +4,15 @@
       <mat-card-title>{{ copy['TITLE'][editMode ? 'EDIT' : 'NEW'] }}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form #newMassageForm="ngForm" fxLayout="column" (ngSubmit)="addNewMassage(newMassageForm.value)">
+      <form [formGroup]="massageForm">
         <mat-form-field hideRequiredMarker>
           <input
             matInput
             type="text"
             id="type"
             name="type"
+            formControlName="type"
             [placeholder]="copy['PLACEHOLDERS']['TYPE']"
-            ngModel
             required
           />
         </mat-form-field>
@@ -25,7 +25,7 @@
             min="5"
             max="300"
             [placeholder]="copy['PLACEHOLDERS']['PRICE']"
-            ngModel
+            formControlName="type"
             required
           />
         </mat-form-field>
@@ -36,7 +36,7 @@
             id="imageUrl"
             name="imageUrl"
             [placeholder]="copy['PLACEHOLDERS']['IMG_URL']"
-            ngModel
+            formControlName="type"
             required
           />
         </mat-form-field>
@@ -46,7 +46,6 @@
             id="description"
             name="description"
             [placeholder]="copy['PLACEHOLDERS']['DESC']"
-            ngModel
             required
           ></textarea>
         </mat-form-field>
@@ -55,7 +54,7 @@
             mat-button
             type="submit"
             color="primary"
-            [disabled]="newMassageForm.invalid || newMassageForm.value.price < 5 || newMassageForm.value.price > 200"
+            (click)="onSubmit()"
           >{{ copy['ACTIONS']['SUBMIT'][editMode ? 'EDIT' : 'NEW'] }}</button>
         </div>
       </form>
