@@ -3,13 +3,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import copy from './massages-composer.copy.json';
 
-import { ApiService } from '@services/api.service';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+
 import { NetworkUtils } from '@app/network';
 import { routing } from '@app/routes';
 import { ROUTE_FRAGMENTS } from '@routes/routes';
-import { tap } from 'rxjs/operators';
-import { NetworkInterfaces } from '@network/interfaces';
-import { Observable } from 'rxjs';
+import { ApiService } from '@services/api.service';
 
 
 interface MassagePost { type: string; price: number; imageUrl: string; description: string; }
