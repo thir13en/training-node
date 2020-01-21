@@ -35,6 +35,14 @@ export class ApiService {
     );
   }
 
+  put(data: NetworkInterfaces.PUT): Observable<any> {
+    const url = this.getFullUrlWithPath(data.path, data.pathParams);
+
+    return this.http.put(url, data.payload).pipe(
+      catchError((err: Error): ObservableInput<any> => throwError(err)),
+    );
+  }
+
   private getFullUrlWithPath(urlFragment: string, pathParams: (string | number)[] = []): string {
     const paramCount: number = (urlFragment.match(/%s/g) || []).length;
 

@@ -9,3 +9,9 @@ export interface POST {
   payload: any;
   pathParams?: (string | number)[];
 }
+
+export interface PUT {
+  path: string;
+  payload: any;
+  pathParams?: (string | number)[];
+}

@@ -1,17 +1,18 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import copy from './massages-composer.copy.json';
 
 import { ApiService } from '@services/api.service';
 import { NetworkUtils } from '@app/network';
-// import { routing } from '@app/routes';
+import { routing } from '@app/routes';
 import { ROUTE_FRAGMENTS } from '@routes/routes';
+import { tap } from 'rxjs/operators';
+import { NetworkInterfaces } from '@network/interfaces';
 import { Observable } from 'rxjs';
-import { MassageModel } from '@core/models';
 
 
-type MassagePost = { type: string, price: number, imageUrl: string, description: string };
+interface MassagePost { type: string; price: number; imageUrl: string; description: string; }
 
 @Component({
   selector: 'app-massages-new',
@@ -23,11 +24,9 @@ export class MassagesComposerComponent implements OnInit {
   massageForm: FormGroup;
   // if we are in edit mode this will be true
   editMode: boolean;
-  // the item we are editing in case we are in edit mode, otherwise undefined
-  massage$: Observable<MassageModel>;
 
   constructor(
-    // private router: Router,
+    private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private apiService: ApiService,
@@ -47,8 +46,19 @@ export class MassagesComposerComponent implements OnInit {
 
     if (massageId) {
       this.editMode = true;
-      this.massage$ = this.apiService.get({ path: NetworkUtils.ENDPOINTS.MASSAGES_DETAIL, pathParams: [massageId] });
+      this.apiService.get({ path: NetworkUtils.ENDPOINTS.MASSAGES_DETAIL, pathParams: [massageId] }).pipe(
+        tap(this.setMassageFormInfo.bind(this))
+      ).subscribe();
     }
+  }
+
+  private setMassageFormInfo(massageRes: any): void {
+    this.massageForm.setValue({
+      type: massageRes.type,
+      price: massageRes.price,
+      imageUrl: massageRes.imageUrl,
+      description: massageRes.description,
+    });
   }
 
   onSubmit(): void {
@@ -59,12 +69,15 @@ export class MassagesComposerComponent implements OnInit {
       imageUrl: imageUrl.value,
       description: description.value,
     };
-    console.log(newMassage);
-    debugger;
-    // this.apiService.post({ path: NetworkUtils.ENDPOINTS.MASSAGES, payload: newMassage }).subscribe(
-    //   (res: any) => this.router.navigateByUrl(routing.ROUTES.MASSAGES),
-    //   err => console.error(err),
-    // );
+    const httpMethod: (data: any) => Observable<any> = this.editMode ? this.apiService.put : this.apiService.post;
+
+    httpMethod({ path: NetworkUtils.ENDPOINTS.MASSAGES, payload: newMassage })
+      .pipe(
+        tap(console.log),
+      )
+      .subscribe(
+      () => this.router.navigateByUrl(routing.ROUTES.MASSAGES),
+      );
   }
 
 }
