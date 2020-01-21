@@ -13,7 +13,6 @@
             name="type"
             formControlName="type"
             [placeholder]="copy['PLACEHOLDERS']['TYPE']"
-            required
           />
         </mat-form-field>
         <mat-form-field hideRequiredMarker>
@@ -22,11 +21,8 @@
             type="number"
             id="price"
             name="price"
-            min="5"
-            max="300"
             [placeholder]="copy['PLACEHOLDERS']['PRICE']"
-            formControlName="type"
-            required
+            formControlName="price"
           />
         </mat-form-field>
         <mat-form-field hideRequiredMarker>
@@ -36,8 +32,7 @@
             id="imageUrl"
             name="imageUrl"
             [placeholder]="copy['PLACEHOLDERS']['IMG_URL']"
-            formControlName="type"
-            required
+            formControlName="imageUrl"
           />
         </mat-form-field>
         <mat-form-field hideRequiredMarker>
@@ -46,7 +41,7 @@
             id="description"
             name="description"
             [placeholder]="copy['PLACEHOLDERS']['DESC']"
-            required
+            formControlName="description"
           ></textarea>
         </mat-form-field>
         <div>
@@ -54,6 +49,7 @@
             mat-button
             type="submit"
             color="primary"
+            [disabled]="massageForm.invalid"
             (click)="onSubmit()"
           >{{ copy['ACTIONS']['SUBMIT'][editMode ? 'EDIT' : 'NEW'] }}</button>
         </div>

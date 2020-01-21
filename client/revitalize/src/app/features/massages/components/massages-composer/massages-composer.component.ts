@@ -11,6 +11,8 @@ import { Observable } from 'rxjs';
 import { MassageModel } from '@core/models';
 
 
+type MassagePost = { type: string, price: number, imageUrl: string, description: string };
+
 @Component({
   selector: 'app-massages-new',
   templateUrl: './massages-composer.component.html',
@@ -18,7 +20,6 @@ import { MassageModel } from '@core/models';
 })
 export class MassagesComposerComponent implements OnInit {
   copy: any;
-  // TODO: pass template driven form to reactive form
   massageForm: FormGroup;
   // if we are in edit mode this will be true
   editMode: boolean;
@@ -37,7 +38,7 @@ export class MassagesComposerComponent implements OnInit {
 
     this.massageForm = this.fb.group({
       type: ['', [Validators.required]],
-      price: ['', [Validators.required]],
+      price: [null, [Validators.required, Validators.min(5), Validators.max(300)]],
       imageUrl: ['', [Validators.required]],
       description: ['', [Validators.required]],
     });
@@ -51,9 +52,16 @@ export class MassagesComposerComponent implements OnInit {
   }
 
   onSubmit(): void {
-    // TODO: add reactive form here
+    const { type, price, imageUrl, description } = this.massageForm.controls;
+    const newMassage: MassagePost = {
+      type: type.value,
+      price: price.value,
+      imageUrl: imageUrl.value,
+      description: description.value,
+    };
+    console.log(newMassage);
     debugger;
-    // this.apiService.post({ path: NetworkUtils.ENDPOINTS.MASSAGES, payload: newMassage}).subscribe(
+    // this.apiService.post({ path: NetworkUtils.ENDPOINTS.MASSAGES, payload: newMassage }).subscribe(
     //   (res: any) => this.router.navigateByUrl(routing.ROUTES.MASSAGES),
     //   err => console.error(err),
     // );
