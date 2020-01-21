@@ -71,11 +71,7 @@ export class MassagesComposerComponent implements OnInit {
     };
     const httpMethod: (data: any) => Observable<any> = this.editMode ? this.apiService.put : this.apiService.post;
 
-    httpMethod({ path: NetworkUtils.ENDPOINTS.MASSAGES, payload: newMassage })
-      .pipe(
-        tap(console.log),
-      )
-      .subscribe(
+    httpMethod({ path: NetworkUtils.ENDPOINTS.MASSAGES, payload: newMassage }).subscribe(
       () => this.router.navigateByUrl(routing.ROUTES.MASSAGES),
       );
   }

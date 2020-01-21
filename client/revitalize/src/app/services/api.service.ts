@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Observable, ObservableInput, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 
 import { environment } from '@environments/environment';
 import { ErrorCodes, errorHandler } from '@core/errors';
@@ -23,6 +23,7 @@ export class ApiService {
       url,
       { params: this.addQueryParams(data.queryParams) },
     ).pipe(
+      tap(console.log),
       catchError((err: Error): ObservableInput<any> => throwError(err)),
     );
   }
@@ -31,6 +32,7 @@ export class ApiService {
     const url = this.getFullUrlWithPath(data.path, data.pathParams);
 
     return this.http.post(url, data.payload).pipe(
+      tap(console.log),
       catchError((err: Error): ObservableInput<any> => throwError(err)),
     );
   }
@@ -39,6 +41,7 @@ export class ApiService {
     const url = this.getFullUrlWithPath(data.path, data.pathParams);
 
     return this.http.put(url, data.payload).pipe(
+      tap(console.log),
       catchError((err: Error): ObservableInput<any> => throwError(err)),
     );
   }
