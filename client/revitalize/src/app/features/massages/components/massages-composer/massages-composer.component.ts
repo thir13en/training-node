@@ -82,6 +82,7 @@ export class MassagesComposerComponent implements OnInit {
       imageUrl: imageUrl.value,
       description: description.value,
     } : editedData;
+    // TODO: conditionally change endpoint and add massage id if in edit mode
 
     httpMethod({ path: NetworkUtils.ENDPOINTS.MASSAGES, payload: massageData }).subscribe(
       () => this.router.navigateByUrl(routing.ROUTES.MASSAGES)

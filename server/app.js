@@ -71,7 +71,7 @@ app.get('/massages/:id', (req, res) => {
 	);
 });
 app.put('/massages/:id', (req, res) => {
-	Massage.findById(
+	Massage.findByIdAndUpdate(
 		req.params.id,
 		(err, massage) => err ?
 			console.log('there was an error retrieving the massage with id: ', req.params.id) :
