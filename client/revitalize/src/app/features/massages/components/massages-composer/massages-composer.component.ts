@@ -21,8 +21,8 @@ interface MassagePost { type: string; price: number; imageUrl: string; descripti
 })
 export class MassagesComposerComponent implements OnInit {
   copy: any;
+
   massageForm: FormGroup;
-  // if we are in edit mode this will be true
   editMode: boolean;
 
   constructor(
@@ -61,20 +61,31 @@ export class MassagesComposerComponent implements OnInit {
     });
   }
 
+  private accumulatorTouchedFields(accumulator: any, controlName: string): any {
+    const controls = this.massageForm.controls;
+
+    // first iteration
+    if (typeof accumulator === 'string') {
+      accumulator = controls[accumulator].pristine ? { } : { [accumulator]: controls[accumulator].value };
+    }
+
+    return controls[controlName].pristine ? accumulator : { ...accumulator, [controlName]: controls[controlName].value };
+  }
+
   onSubmit(): void {
     const { type, price, imageUrl, description } = this.massageForm.controls;
-    const newMassage: MassagePost = {
+    const httpMethod: (data: any) => Observable<any> = this.editMode ? this.apiService.put : this.apiService.post;
+    const editedData: any = Object.keys(this.massageForm.controls).reduce(this.accumulatorTouchedFields.bind(this));
+    const massageData: MassagePost = this.editMode ? {
       type: type.value,
       price: price.value,
       imageUrl: imageUrl.value,
       description: description.value,
-    };
-    const httpMethod: (data: any) => Observable<any> = this.editMode ? this.apiService.put : this.apiService.post;
+    } : editedData;
 
-    // TODO: make sure only touched elements are submitted
-    httpMethod({ path: NetworkUtils.ENDPOINTS.MASSAGES, payload: newMassage }).subscribe(
-      () => this.router.navigateByUrl(routing.ROUTES.MASSAGES),
-      );
+    httpMethod({ path: NetworkUtils.ENDPOINTS.MASSAGES, payload: massageData }).subscribe(
+      () => this.router.navigateByUrl(routing.ROUTES.MASSAGES)
+    );
   }
 
 }

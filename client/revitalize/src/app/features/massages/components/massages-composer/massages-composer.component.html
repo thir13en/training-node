@@ -52,7 +52,7 @@
             mat-button
             type="submit"
             color="primary"
-            [disabled]="massageForm.invalid"
+            [disabled]="massageForm.pristine || massageForm.invalid"
             (click)="onSubmit()"
           >{{ copy['ACTIONS']['SUBMIT'][editMode ? 'EDIT' : 'NEW'] }}</button>
         </div>

@@ -54,6 +54,14 @@ app.get('/massages', (req, res) => {
 				res.send(massages)
 	);
 });
+app.post('/massages', (req, res) => {
+	Massage.create(
+		req.body,
+		(err, massage) => err ?
+			console.log('something went wrong', err) :
+			res.send({ message: 'new massage added', massage })
+	);
+});
 app.get('/massages/:id', (req, res) => {
 	Massage.findById(
 		req.params.id,
@@ -62,12 +70,12 @@ app.get('/massages/:id', (req, res) => {
 			res.send(massage)
 	);
 });
-app.post('/massages', (req, res) => {
-	Massage.create(
-		req.body,
+app.put('/massages/:id', (req, res) => {
+	Massage.findById(
+		req.params.id,
 		(err, massage) => err ?
-			console.log('something went wrong', err) :
-			res.send({ message: 'new massage added', massage })
+			console.log('there was an error retrieving the massage with id: ', req.params.id) :
+			res.send(massage)
 	);
 });
 
