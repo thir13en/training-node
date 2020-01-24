@@ -1,6 +1,12 @@
 export const PATH_PARAM_PLACEHOLDER = '%s';
 
-export const ENDPOINTS = {
+const PATHS = {
   MASSAGES: 'massages',
-  MASSAGES_DETAIL: ['massages', PATH_PARAM_PLACEHOLDER].join('/'),
+  PLACEHOLDER: '%s',
+};
+
+export const ENDPOINTS = {
+  MASSAGES: PATHS.MASSAGES,
+  MASSAGES_DETAIL: [PATHS.MASSAGES, PATH_PARAM_PLACEHOLDER].join('/'),
+  MASSAGES_EDIT: [PATHS.MASSAGES, PATH_PARAM_PLACEHOLDER].join('/'),
 };

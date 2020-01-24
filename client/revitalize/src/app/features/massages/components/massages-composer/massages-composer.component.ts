@@ -24,6 +24,7 @@ export class MassagesComposerComponent implements OnInit {
 
   massageForm: FormGroup;
   editMode: boolean;
+  private massageId: string;
 
   constructor(
     private router: Router,
@@ -42,11 +43,11 @@ export class MassagesComposerComponent implements OnInit {
       description: ['', [Validators.required]],
     });
 
-    const massageId: string = this.route.snapshot.params[ROUTE_FRAGMENTS.MASSAGE_IDENTIFIER.replace(':', '')];
+    this.massageId = this.route.snapshot.params[ROUTE_FRAGMENTS.MASSAGE_IDENTIFIER.replace(':', '')];
 
-    if (massageId) {
+    if (this.massageId) {
       this.editMode = true;
-      this.apiService.get({ path: NetworkUtils.ENDPOINTS.MASSAGES_DETAIL, pathParams: [massageId] }).pipe(
+      this.apiService.get({ path: NetworkUtils.ENDPOINTS.MASSAGES_DETAIL, pathParams: [this.massageId] }).pipe(
         tap(this.setMassageFormInfo.bind(this))
       ).subscribe();
     }
@@ -74,6 +75,7 @@ export class MassagesComposerComponent implements OnInit {
 
   onSubmit(): void {
     const { type, price, imageUrl, description } = this.massageForm.controls;
+    const path: string = this.editMode ? NetworkUtils.ENDPOINTS.MASSAGES_EDIT : NetworkUtils.ENDPOINTS.MASSAGES;
     const httpMethod: (data: any) => Observable<any> = this.editMode ? this.apiService.put : this.apiService.post;
     const editedData: any = Object.keys(this.massageForm.controls).reduce(this.accumulatorTouchedFields.bind(this));
     const massageData: MassagePost = this.editMode ? {
@@ -82,10 +84,13 @@ export class MassagesComposerComponent implements OnInit {
       imageUrl: imageUrl.value,
       description: description.value,
     } : editedData;
-    // TODO: conditionally change endpoint and add massage id if in edit mode
 
-    httpMethod({ path: NetworkUtils.ENDPOINTS.MASSAGES, payload: massageData }).subscribe(
-      () => this.router.navigateByUrl(routing.ROUTES.MASSAGES)
+    httpMethod({
+      path,
+      payload: massageData,
+      pathParams: this.massageId,
+    }).subscribe(
+      () => this.router.navigateByUrl(routing.ROUTES.MASSAGES),
     );
   }
 
