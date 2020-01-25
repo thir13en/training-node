@@ -15,6 +15,7 @@ import { MassageModel } from '@core/models';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MassagesComponent implements OnInit {
+  // TODO: add testing
   copy: any;
 
   massages$: Observable<MassageModel[]>;

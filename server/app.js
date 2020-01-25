@@ -71,9 +71,9 @@ app.get('/massages/:id', (req, res) => {
 	);
 });
 app.put('/massages/:id', (req, res) => {
-	// TODO: check api to make sure it only restores set up fields
 	Massage.findByIdAndUpdate(
 		req.params.id,
+		req.body,
 		(err, massage) => err ?
 			console.log('there was an error retrieving the massage with id: ', req.params.id) :
 			res.send(massage)

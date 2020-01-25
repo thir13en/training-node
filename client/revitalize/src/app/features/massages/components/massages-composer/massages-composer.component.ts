@@ -34,6 +34,7 @@ export class MassagesComposerComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // TODO: add testing
     this.copy = copy;
 
     this.massageForm = this.fb.group({
@@ -76,19 +77,19 @@ export class MassagesComposerComponent implements OnInit {
   onSubmit(): void {
     const { type, price, imageUrl, description } = this.massageForm.controls;
     const path: string = this.editMode ? NetworkUtils.ENDPOINTS.MASSAGES_EDIT : NetworkUtils.ENDPOINTS.MASSAGES;
-    const httpMethod: (data: any) => Observable<any> = this.editMode ? this.apiService.put : this.apiService.post;
+    const httpMethod: (data: any) => Observable<any> = (this.editMode ? this.apiService.put : this.apiService.post).bind(this.apiService);
     const editedData: any = Object.keys(this.massageForm.controls).reduce(this.accumulatorTouchedFields.bind(this));
-    const massageData: MassagePost = this.editMode ? {
+    const massageData: MassagePost = this.editMode ? editedData : {
       type: type.value,
       price: price.value,
       imageUrl: imageUrl.value,
       description: description.value,
-    } : editedData;
+    };
 
     httpMethod({
       path,
       payload: massageData,
-      pathParams: this.massageId,
+      pathParams: [this.massageId],
     }).subscribe(
       () => this.router.navigateByUrl(routing.ROUTES.MASSAGES),
     );
