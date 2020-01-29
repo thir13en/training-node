@@ -12,18 +12,14 @@ import { NetworkInterfaces } from '@network/interfaces';
 
 @Injectable()
 export class ApiService {
-  // TODO: add testing
   constructor(
     private http: HttpClient,
   ) {}
 
   get(data: NetworkInterfaces.Get): Observable<any> {
-    const url = this.getFullUrlWithPath(data.path, data.pathParams);
+    const url: string = this.getFullUrlWithPath(data.path, data.pathParams);
 
-    return this.http.get(
-      url,
-      { params: this.addQueryParams(data.queryParams) },
-    ).pipe(
+    return this.http.get(...this.buildRequestData(url, data.queryParams)).pipe(
       catchError((err: Error): ObservableInput<any> => throwError(err)),
     );
   }
@@ -42,6 +38,16 @@ export class ApiService {
     return this.http.put(url, data.payload).pipe(
       catchError((err: Error): ObservableInput<any> => throwError(err)),
     );
+  }
+
+  private buildRequestData(url: string, queryParams: { param: string, value: string }[]): [string, any?] {
+    let requestData: [string, any? ] = [url];
+
+    if (queryParams) {
+      requestData = [ ...requestData, { params: this.addQueryParams(queryParams) } ] as [string, any];
+    }
+
+    return requestData as [string, any?];
   }
 
   private getFullUrlWithPath(urlFragment: string, pathParams: (string | number)[] = []): string {
