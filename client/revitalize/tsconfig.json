@@ -3,23 +3,24 @@
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
-    "sourceMap": true,
-    "declaration": false,
+    "lib": [
+      "ES2019",
+      "dom"
+    ],
     "module": "esnext",
     "moduleResolution": "node",
+    "target": "ES2016",
+    "sourceMap": true,
+    "declaration": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "es2015",
     "noUnusedLocals": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "strict": true,
     "typeRoots": [
       "node_modules/@types"
-    ],
-    "lib": [
-      "es2018",
-      "dom"
     ],
     "paths": {
       "@environments/*": ["src/environments/*"],
