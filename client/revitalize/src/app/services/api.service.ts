@@ -40,7 +40,7 @@ export class ApiService {
     );
   }
 
-  private buildRequestData(url: string, queryParams: { param: string, value: string }[]): [string, any?] {
+  private buildRequestData(url: string, queryParams?: { param: string, value: string }[]): [string, any?] {
     let requestData: [string, any? ] = [url];
 
     if (queryParams) {
@@ -60,8 +60,8 @@ export class ApiService {
 
   private addParamsToPath(path: string, params: (string | number)[]): string {
 
-    params.forEach((param: string): void => {
-      path = path.replace(NetworkUtils.PATH_PARAM_PLACEHOLDER, param);
+    params.forEach((param: string | number): void => {
+      path = path.replace(NetworkUtils.PATH_PARAM_PLACEHOLDER, param.toString());
     });
 
     return path;
@@ -76,9 +76,9 @@ export class ApiService {
       payload.forEach((el: { param: string, value: string }) =>
         params = params.keys().length ? params.set(el.param, el.value) : params.append(el.param, el.value)
       );
-    }
 
-    return params;
+      return params;
+    }
   }
 
 }

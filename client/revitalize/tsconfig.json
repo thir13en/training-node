@@ -19,6 +19,7 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "strict": true,
+    "strictPropertyInitialization": false,
     "typeRoots": [
       "node_modules/@types"
     ],

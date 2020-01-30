@@ -22,7 +22,7 @@ export class MassagesComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
-    @Inject(ROUTE_FRAGMENTS_INJECTABLE) public routesFragments,
+    @Inject(ROUTE_FRAGMENTS_INJECTABLE) public routesFragments: any,
   ) {}
 
   ngOnInit() {

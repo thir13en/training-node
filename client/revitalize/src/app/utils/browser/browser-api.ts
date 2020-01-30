@@ -3,12 +3,12 @@
  */
 import { StaticProvider } from '@angular/core';
 
-const getWindowRef = (): Window => (typeof window !== 'undefined') ? window : null;
-const getDocumentRef = (): Document => (typeof document !== 'undefined') ? window.document : null;
-const getLocalStorage = (): Storage => (typeof window !== 'undefined') ? window.localStorage : null;
-const getLocation = (): Location => (typeof window !== 'undefined') ? window.location : null;
-const getNavigator = (): Navigator => (typeof window !== 'undefined') ? window.navigator : null;
-const getFileReader = (): FileReader => (typeof (FileReader) !== 'undefined') ? new FileReader() : null;
+const getWindowRef = (): Window | null => (typeof window !== 'undefined') ? window : null;
+const getDocumentRef = (): Document | null => (typeof document !== 'undefined') ? window.document : null;
+const getLocalStorage = (): Storage | null => (typeof window !== 'undefined') ? window.localStorage : null;
+const getLocation = (): Location | null => (typeof window !== 'undefined') ? window.location : null;
+const getNavigator = (): Navigator | null => (typeof window !== 'undefined') ? window.navigator : null;
+const getFileReader = (): FileReader | null => (typeof (FileReader) !== 'undefined') ? new FileReader() : null;
 
 /**
  * the providers
