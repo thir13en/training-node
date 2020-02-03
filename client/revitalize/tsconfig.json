@@ -32,7 +32,8 @@
       "@ui/*": ["src/app/ui/*"],
       "@utils/*": ["src/app/utils/*"],
       "@layout/*": ["src/app/layout/*"],
-      "@services/*": ["src/app/services/*"]
+      "@services/*": ["src/app/services/*"],
+      "@testing/*": ["src/app/testing/*"]
     }
   },
   "angularCompilerOptions": {

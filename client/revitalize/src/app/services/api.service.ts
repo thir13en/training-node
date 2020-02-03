@@ -33,7 +33,6 @@ export class ApiService {
   }
 
   put(data: NetworkInterfaces.PUT): Observable<any> {
-    // TODO: fix compilation issue
     const url = this.getFullUrlWithPath(data.path, data.pathParams);
 
     return this.http.put(url, data.payload).pipe(
