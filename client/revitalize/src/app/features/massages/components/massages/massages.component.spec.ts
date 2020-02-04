@@ -1,12 +1,13 @@
+import { ChangeDetectionStrategy } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
+import { of as observableOf } from 'rxjs';
+
+import { ApiService } from '@services/api.service';
 import { TestingModule } from '@testing/testing.module';
 import { API_SERVICE_MOCK_PROVIDER } from '@testing/mocks/api.service.mock';
 import { MassagesComponent } from './massages.component';
-import { ApiService } from '@services/api.service';
-import { of as observableOf } from 'rxjs';
-import { ChangeDetectionStrategy } from '@angular/core';
-import { By } from '@angular/platform-browser';
 
 
 const massageExample = {
@@ -30,9 +31,11 @@ describe('MassagesComponent', () => {
         providers: [API_SERVICE_MOCK_PROVIDER],
       }).overrideComponent(
         MassagesComponent,
-        { set: {
-          changeDetection: ChangeDetectionStrategy.Default
-        }}
+        {
+          set: {
+            changeDetection: ChangeDetectionStrategy.Default,
+          }
+        }
       ).compileComponents()
   ));
 
@@ -44,7 +47,7 @@ describe('MassagesComponent', () => {
 
   it('should create', () => expect(component).toBeTruthy());
 
-  it('should display massages', async(async () => {
+  it('should display massages', async(() => {
     const service: ApiService = TestBed.inject(ApiService);
     spyOn(service, 'get').and.returnValue(observableOf([massageExample]));
 
