@@ -48,6 +48,10 @@ describe('MassagesComponent', () => {
   it('should create', () => expect(component).toBeTruthy());
 
   it('should display massages', async(() => {
+    // TODO: count massages
+  }));
+
+  it('should display massage info', async(() => {
     const service: ApiService = TestBed.inject(ApiService);
     spyOn(service, 'get').and.returnValue(observableOf([massageExample]));
 
