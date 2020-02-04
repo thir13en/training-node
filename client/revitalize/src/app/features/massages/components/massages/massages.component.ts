@@ -2,17 +2,17 @@ import { Component, OnInit, ChangeDetectionStrategy, Inject } from '@angular/cor
 import copy from './massages.copy.json';
 
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
+import { MassageModel } from '@core/models';
 import { ROUTE_FRAGMENTS_INJECTABLE } from '@routes/routes';
 import { ENDPOINTS } from '@network/endpoints';
 import { ApiService } from '@services/api.service';
-import { MassageModel } from '@core/models';
 
 
 @Component({
   templateUrl: './massages.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MassagesComponent implements OnInit {
   copy: any;
@@ -28,8 +28,7 @@ export class MassagesComponent implements OnInit {
     this.copy = copy;
 
     this.massages$ = this.apiService.get({ path: ENDPOINTS.MASSAGES }).pipe(
-      tap(console.log),
-      map((res: any[]): MassageModel[] => res.map((r: any): MassageModel => new MassageModel(r))),
+      map((res: any[]): MassageModel[] => res.map((resItem): MassageModel => new MassageModel(resItem))),
     );
 
   }

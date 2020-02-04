@@ -3,9 +3,22 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TestingModule } from '@testing/testing.module';
 import { API_SERVICE_MOCK_PROVIDER } from '@testing/mocks/api.service.mock';
 import { MassagesComponent } from './massages.component';
+import { ApiService } from '@services/api.service';
+import { of as observableOf } from 'rxjs';
+import { ChangeDetectionStrategy } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 
-fdescribe('MassagesComponent', () => {
+const massageExample = {
+  _id: '5dfc9115993ccd356e259824',
+  created: '2019-12-20T09:15:01.036Z',
+  type: 'Thai',
+  price: 120,
+  description: 'Thai massage or Thai yoga massage is a traditional healing system combining acupressure',
+  imageUrl: 'https://duckduckgo.com/i/ef519cbe.jpg',
+};
+
+describe('MassagesComponent', () => {
   let component: MassagesComponent;
   let fixture: ComponentFixture<MassagesComponent>;
 
@@ -15,20 +28,31 @@ fdescribe('MassagesComponent', () => {
         imports: [TestingModule],
         declarations: [MassagesComponent],
         providers: [API_SERVICE_MOCK_PROVIDER],
-      }).compileComponents()
+      }).overrideComponent(
+        MassagesComponent,
+        { set: {
+          changeDetection: ChangeDetectionStrategy.Default
+        }}
+      ).compileComponents()
   ));
 
-  beforeEach(() => {
+  beforeEach(async(() => {
     fixture = TestBed.createComponent(MassagesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  }));
 
   it('should create', () => expect(component).toBeTruthy());
 
-  it('should create', () => {
-    // TODO: check that massage is correctly printed spying on get method
-    expect(component).toBeTruthy();
-  });
+  it('should display massages', async(async () => {
+    const service: ApiService = TestBed.inject(ApiService);
+    spyOn(service, 'get').and.returnValue(observableOf([massageExample]));
+
+    component.ngOnInit();
+    fixture.detectChanges();
+    const massageName = fixture.debugElement.query(By.css('mat-card-title')).nativeElement.innerText;
+
+    expect(massageName).toEqual('Thai');
+  }));
 
 });
