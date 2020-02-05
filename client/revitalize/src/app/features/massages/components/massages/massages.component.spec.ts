@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { MatCardModule } from '@angular/material/card';
 
 import { of as observableOf } from 'rxjs';
 
@@ -22,11 +23,12 @@ const massageExample = {
 describe('MassagesComponent', () => {
   let component: MassagesComponent;
   let fixture: ComponentFixture<MassagesComponent>;
+  let service: ApiService;
 
   beforeEach(async(
     () => TestBed.configureTestingModule(
       {
-        imports: [TestingModule],
+        imports: [TestingModule, MatCardModule],
         declarations: [MassagesComponent],
         providers: [API_SERVICE_MOCK_PROVIDER],
       }).overrideComponent(
@@ -41,6 +43,8 @@ describe('MassagesComponent', () => {
 
   beforeEach(async(() => {
     fixture = TestBed.createComponent(MassagesComponent);
+    service = TestBed.inject(ApiService);
+    spyOn(service, 'get').and.returnValue(observableOf([massageExample]));
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
@@ -48,15 +52,12 @@ describe('MassagesComponent', () => {
   it('should create', () => expect(component).toBeTruthy());
 
   it('should display massages', async(() => {
-    // TODO: count massages
+    const massageCount = fixture.debugElement.queryAll(By.css('mat-card-title')).length;
+
+    expect(massageCount).toEqual(1);
   }));
 
   it('should display massage info', async(() => {
-    const service: ApiService = TestBed.inject(ApiService);
-    spyOn(service, 'get').and.returnValue(observableOf([massageExample]));
-
-    component.ngOnInit();
-    fixture.detectChanges();
     const massageName = fixture.debugElement.query(By.css('mat-card-title')).nativeElement.innerText;
 
     expect(massageName).toEqual('Thai');
