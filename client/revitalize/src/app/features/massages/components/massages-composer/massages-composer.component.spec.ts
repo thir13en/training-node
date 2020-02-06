@@ -1,14 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TestingModule } from '@app/testing/testing.module';
-import { MassagesNewComponent } from './massages-new.component';
 import { MaterialFormControlsModule } from '@ui/angular-material/material-form-controls.module';
 import { MaterialLayoutModule } from '@ui/angular-material/material-layout.module';
+import { MassagesComposerComponent } from './massages-composer.component';
 
 
-describe('MassagesNewComponent', () => {
-  let component: MassagesNewComponent;
-  let fixture: ComponentFixture<MassagesNewComponent>;
+describe('MassagesComposerComponent', () => {
+  let component: MassagesComposerComponent;
+  let fixture: ComponentFixture<MassagesComposerComponent>;
 
   beforeEach(async(
     () => TestBed.configureTestingModule(
@@ -18,18 +18,18 @@ describe('MassagesNewComponent', () => {
           MaterialLayoutModule,
           MaterialFormControlsModule,
         ],
-        declarations: [MassagesNewComponent],
+        declarations: [MassagesComposerComponent],
       }).compileComponents()
   ));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MassagesNewComponent);
+    fixture = TestBed.createComponent(MassagesComposerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+  it('should create', () => expect(component).toBeTruthy());
+
+  // TODO: add testing to check difference between edit and create
 
 });
