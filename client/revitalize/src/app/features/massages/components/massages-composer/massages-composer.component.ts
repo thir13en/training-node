@@ -34,7 +34,6 @@ export class MassagesComposerComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // TODO: add testing
     this.copy = copy;
 
     this.massageForm = this.fb.group({

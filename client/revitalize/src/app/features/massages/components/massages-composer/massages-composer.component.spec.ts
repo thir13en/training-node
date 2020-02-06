@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TestingModule } from '@app/testing/testing.module';
-import { MassagesComposerComponent } from './massages-composer.component';
 import { MaterialFormControlsModule } from '@ui/angular-material/material-form-controls.module';
 import { MaterialLayoutModule } from '@ui/angular-material/material-layout.module';
+import { MassagesComposerComponent } from './massages-composer.component';
 
 
 describe('MassagesComposerComponent', () => {
@@ -29,5 +29,7 @@ describe('MassagesComposerComponent', () => {
   });
 
   it('should create', () => expect(component).toBeTruthy());
+
+  // TODO: add testing to check difference between edit and create
 
 });
