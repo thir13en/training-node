@@ -4,6 +4,8 @@ import { TestingModule } from '@app/testing/testing.module';
 import { MaterialFormControlsModule } from '@ui/angular-material/material-form-controls.module';
 import { MaterialLayoutModule } from '@ui/angular-material/material-layout.module';
 import { MassagesComposerComponent } from './massages-composer.component';
+import { By } from '@angular/platform-browser';
+import { ChangeDetectionStrategy } from '@angular/core';
 
 
 describe('MassagesComposerComponent', () => {
@@ -19,7 +21,10 @@ describe('MassagesComposerComponent', () => {
           MaterialFormControlsModule,
         ],
         declarations: [MassagesComposerComponent],
-      }).compileComponents()
+      }).overrideComponent(
+        MassagesComposerComponent,
+        { set: { changeDetection: ChangeDetectionStrategy.Default } }
+      ).compileComponents()
   ));
 
   beforeEach(() => {
@@ -30,6 +35,18 @@ describe('MassagesComposerComponent', () => {
 
   it('should create', () => expect(component).toBeTruthy());
 
-  // TODO: add testing to check difference between edit and create
+  it('should detect edit mode text', () => {
+    let buttonText: string = fixture.debugElement.query(By.css('button')).nativeElement.innerText;
+
+    expect('Add massage').toEqual(buttonText);
+
+    component.editMode = true;
+    fixture.detectChanges();
+    buttonText = fixture.debugElement.query(By.css('button')).nativeElement.innerText;
+
+    expect('Edit massage').toEqual(buttonText);
+  });
+
+  // TODO: add testing to check form data is correctly gathered
 
 });

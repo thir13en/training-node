@@ -17,7 +17,7 @@ interface MassagePost { type: string; price: number; imageUrl: string; descripti
 @Component({
   selector: 'app-massages-new',
   templateUrl: './massages-composer.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MassagesComposerComponent implements OnInit {
   copy: any;
