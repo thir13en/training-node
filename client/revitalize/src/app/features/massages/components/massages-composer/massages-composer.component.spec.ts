@@ -11,7 +11,7 @@ import { ApiService } from '@services/api.service';
 import { MassagesComposerComponent } from './massages-composer.component';
 
 
-fdescribe('MassagesComposerComponent', () => {
+describe('MassagesComposerComponent', () => {
   let component: MassagesComposerComponent;
   let fixture: ComponentFixture<MassagesComposerComponent>;
 
