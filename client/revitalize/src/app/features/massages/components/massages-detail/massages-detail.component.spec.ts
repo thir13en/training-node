@@ -20,4 +20,6 @@ describe('MassagesDetailComponent', () => {
   });
 
   it('should create', () => expect(component).toBeTruthy());
+
+  // TODO: add tests for TDD
 });
