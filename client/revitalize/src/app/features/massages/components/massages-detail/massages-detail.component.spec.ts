@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MassagesDetailComponent } from './massages-detail.component';
+import { ApiService } from '@services/api.service';
+import { mockResponses } from '@testing/mocks';
 
 describe('MassagesDetailComponent', () => {
   let component: MassagesDetailComponent;
@@ -21,5 +23,12 @@ describe('MassagesDetailComponent', () => {
 
   it('should create', () => expect(component).toBeTruthy());
 
-  // TODO: add tests for TDD
+  it('should display a massage', () => {
+    const service = TestBed.inject(ApiService);
+    spyOn(service, 'get').and.returnValues(mockResponses.getMassageResponse);
+    // TODO: select expected massage title and test for failure case
+
+    expect(component).toBeTruthy();
+  });
+
 });
