@@ -1,8 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MassagesDetailComponent } from './massages-detail.component';
-import { ApiService } from '@services/api.service';
+import { TestingModule } from '@testing/testing.module';
 import { mockResponses } from '@testing/mocks';
+import { ApiService } from '@services/api.service';
+import { MassagesDetailComponent } from './massages-detail.component';
+
 
 describe('MassagesDetailComponent', () => {
   let component: MassagesDetailComponent;
@@ -10,7 +12,8 @@ describe('MassagesDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MassagesDetailComponent ]
+      imports: [TestingModule],
+      declarations: [MassagesDetailComponent]
     })
     .compileComponents();
   }));
