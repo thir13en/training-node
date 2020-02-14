@@ -1,25 +1,23 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { TestingModule } from '@testing/testing.module';
-import { mockResponses } from '@testing/mocks';
-import { ApiService } from '@services/api.service';
-import { MassagesDetailComponent } from './massages-detail.component';
 import { By } from '@angular/platform-browser';
 import { ChangeDetectionStrategy } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
+
+import { TestingModule } from '@testing/testing.module';
+import { ActivatedRouteMock, mockResponses } from '@testing/mocks';
+import { ApiService } from '@services/api.service';
+import { MassagesDetailComponent } from './massages-detail.component';
 
 
-fdescribe('MassagesDetailComponent', () => {
+describe('MassagesDetailComponent', () => {
   let component: MassagesDetailComponent;
   let fixture: ComponentFixture<MassagesDetailComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [TestingModule],
+      imports: [TestingModule, MatCardModule],
       declarations: [MassagesDetailComponent],
-      providers: [
-        { provide: ActivatedRoute, useValue: { snapshot: { params: { massageId: 'something' } } } },
-      ]
     }).overrideComponent(
       MassagesDetailComponent,
       {
@@ -38,6 +36,9 @@ fdescribe('MassagesDetailComponent', () => {
   it('should create', () => expect(component).toBeTruthy());
 
   it('should display a massage', () => {
+    // get mock activated route and set mock params snapshot
+    const route = TestBed.inject(ActivatedRoute);
+    (route as ActivatedRouteMock).setSnapshotParams({ massageId: 'something' });
     // get and mock service response
     const service = TestBed.inject(ApiService);
     spyOn(service, 'get').and.returnValues(mockResponses.getMassageResponse);
