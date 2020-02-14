@@ -28,7 +28,7 @@ export class MassagesDetailComponent implements OnInit {
 
   ngOnInit() {
     this.copy = copy;
-    this.massageId = this.route.snapshot.params[ROUTE_FRAGMENTS.MASSAGE_IDENTIFIER.replace(':', '')];
+    this.massageId = this.route.snapshot.paramMap.get(ROUTE_FRAGMENTS.MASSAGE_IDENTIFIER.replace(':', ''))!;
 
     if (this.massageId) {
       this.massage$ = this.apiService.get({ path: NetworkUtils.ENDPOINTS.MASSAGES_DETAIL, pathParams: [this.massageId] });

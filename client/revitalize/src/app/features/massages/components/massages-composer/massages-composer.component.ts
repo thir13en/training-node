@@ -43,7 +43,7 @@ export class MassagesComposerComponent implements OnInit {
       description: ['', [Validators.required]],
     });
 
-    this.massageId = this.route.snapshot.params[ROUTE_FRAGMENTS.MASSAGE_IDENTIFIER.replace(':', '')];
+    this.massageId = this.route.snapshot.paramMap.get(ROUTE_FRAGMENTS.MASSAGE_IDENTIFIER.replace(':', ''))!;
 
     if (this.massageId) {
       this.editMode = true;
