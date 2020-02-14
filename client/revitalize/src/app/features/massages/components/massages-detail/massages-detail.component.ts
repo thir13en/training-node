@@ -1,9 +1,11 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import copy from './massages-detail.copy.json';
 
-import { tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
-import { ROUTE_FRAGMENTS } from '@routes/routes';
+import { MassageModel } from '@core/models';
+import { ROUTE_FRAGMENTS, ROUTE_FRAGMENTS_INJECTABLE } from '@routes/routes';
 import { NetworkUtils } from '@app/network';
 import { ApiService } from '@services/api.service';
 
@@ -11,24 +13,25 @@ import { ApiService } from '@services/api.service';
 @Component({
   selector: 'app-massages-detail',
   templateUrl: './massages-detail.component.html',
-  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MassagesDetailComponent implements OnInit {
+  copy: any;
   private massageId: string;
+  massage$: Observable<MassageModel>;
 
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,
+    @Inject(ROUTE_FRAGMENTS_INJECTABLE) public routesFragments: any,
   ) { }
 
   ngOnInit() {
+    this.copy = copy;
     this.massageId = this.route.snapshot.params[ROUTE_FRAGMENTS.MASSAGE_IDENTIFIER.replace(':', '')];
 
     if (this.massageId) {
-      this.apiService.get({ path: NetworkUtils.ENDPOINTS.MASSAGES_DETAIL, pathParams: [this.massageId] }).pipe(
-        tap(console.log),
-      ).subscribe();
+      this.massage$ = this.apiService.get({ path: NetworkUtils.ENDPOINTS.MASSAGES_DETAIL, pathParams: [this.massageId] });
     }
   }
 

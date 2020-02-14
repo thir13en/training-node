@@ -4,17 +4,28 @@ import { TestingModule } from '@testing/testing.module';
 import { mockResponses } from '@testing/mocks';
 import { ApiService } from '@services/api.service';
 import { MassagesDetailComponent } from './massages-detail.component';
+import { By } from '@angular/platform-browser';
+import { ChangeDetectionStrategy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 
-describe('MassagesDetailComponent', () => {
+fdescribe('MassagesDetailComponent', () => {
   let component: MassagesDetailComponent;
   let fixture: ComponentFixture<MassagesDetailComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [TestingModule],
-      declarations: [MassagesDetailComponent]
-    })
+      declarations: [MassagesDetailComponent],
+      providers: [
+        { provide: ActivatedRoute, useValue: { snapshot: { params: { massageId: 'something' } } } },
+      ]
+    }).overrideComponent(
+      MassagesDetailComponent,
+      {
+        set: { changeDetection: ChangeDetectionStrategy.Default }
+      }
+    )
     .compileComponents();
   }));
 
@@ -27,11 +38,16 @@ describe('MassagesDetailComponent', () => {
   it('should create', () => expect(component).toBeTruthy());
 
   it('should display a massage', () => {
+    // get and mock service response
     const service = TestBed.inject(ApiService);
     spyOn(service, 'get').and.returnValues(mockResponses.getMassageResponse);
-    // TODO: select expected massage title and test for failure case
 
-    expect(component).toBeTruthy();
+    // trigger change detection
+    component.ngOnInit();
+    fixture.detectChanges();
+    const el = fixture.debugElement.query(By.css('mat-card-title')).nativeElement;
+
+    expect(el.innerText).toEqual('Californian massage');
   });
 
 });
