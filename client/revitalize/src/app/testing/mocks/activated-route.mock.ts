@@ -1,4 +1,5 @@
-import { ActivatedRoute, convertToParamMap, Params } from '@angular/router';
+import { ActivatedRoute, convertToParamMap, ParamMap, Params } from '@angular/router';
+import { Observable, of } from 'rxjs';
 
 
 export class ActivatedRouteMock extends ActivatedRoute {
@@ -6,8 +7,12 @@ export class ActivatedRouteMock extends ActivatedRoute {
     params: '',
   };
 
+  get paramMap(): Observable<ParamMap> {
+    return of(convertToParamMap(this.snapshot.params));
+  }
+
   setSnapshotParams(params: Params): void {
-    this.snapshot.params = convertToParamMap(params);
+    this.snapshot.params = params;
   }
 }
 
