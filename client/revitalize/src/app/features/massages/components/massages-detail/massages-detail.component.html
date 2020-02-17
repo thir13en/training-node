@@ -1,13 +1,11 @@
-<section *ngIf="massage$ | async as massage" fxLayout="column">
+<section *ngIf="massage$ | async as massage" fxLayout="column" fxLayoutAlign="start center">
   <mat-card fxLayout="column" class="w-75 mt16">
     <mat-card-header>
       <mat-card-title>{{ massage.type }}</mat-card-title>
     </mat-card-header>
     <img mat-card-image [attr.src]="massage.imageUrl" alt="descriptive image of a massage">
     <mat-card-content fxFlex="grow">
-      <p>
-        {{ massage.description.substr(0, 144) }}...
-      </p>
+      <p class="mat-body-2">{{ massage.description }}</p>
     </mat-card-content>
     <mat-card-actions align="end">
       <button mat-button color="primary" [routerLink]="[massage.id, routesFragments['EDIT']]">{{ copy['ACTIONS']['EDIT'] }}</button>
