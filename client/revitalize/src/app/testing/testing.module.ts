@@ -6,6 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { API_SERVICE_MOCK_PROVIDER } from './mocks/api.service.mock';
+import { ACTIVATED_ROUTE_MOCK_PROVIDER } from '@testing/mocks';
 
 
 @NgModule({
@@ -17,6 +18,9 @@ import { API_SERVICE_MOCK_PROVIDER } from './mocks/api.service.mock';
     RouterTestingModule,
     HttpClientTestingModule,
   ],
-  providers: [API_SERVICE_MOCK_PROVIDER],
+  providers: [
+    ACTIVATED_ROUTE_MOCK_PROVIDER,
+    API_SERVICE_MOCK_PROVIDER
+  ],
 })
 export class TestingModule {}
