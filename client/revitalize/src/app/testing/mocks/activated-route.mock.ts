@@ -4,7 +4,8 @@ import { Observable, of } from 'rxjs';
 
 export class ActivatedRouteMock extends ActivatedRoute {
   snapshot: any = {
-    params: '',
+    params: {},
+    paramMap: convertToParamMap({}),
   };
 
   get paramMap(): Observable<ParamMap> {
@@ -12,7 +13,10 @@ export class ActivatedRouteMock extends ActivatedRoute {
   }
 
   setSnapshotParams(params: Params): void {
-    this.snapshot.params = params;
+    this.snapshot = {
+      params,
+      paramMap: convertToParamMap(params),
+    };
   }
 }
 
