@@ -17,7 +17,7 @@ interface MassagePost { type: string; price: number; imageUrl: string; descripti
 @Component({
   selector: 'app-massages-new',
   templateUrl: './massages-composer.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MassagesComposerComponent implements OnInit {
   copy: any;
@@ -43,7 +43,7 @@ export class MassagesComposerComponent implements OnInit {
       description: ['', [Validators.required]],
     });
 
-    this.massageId = this.route.snapshot.params[ROUTE_FRAGMENTS.MASSAGE_IDENTIFIER.replace(':', '')];
+    this.massageId = this.route.snapshot.paramMap.get(ROUTE_FRAGMENTS.MASSAGE_IDENTIFIER.replace(':', ''))!;
 
     if (this.massageId) {
       this.editMode = true;
