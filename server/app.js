@@ -41,8 +41,6 @@ const massageSchema = new mongoose.Schema({
 });
 const Massage = mongoose.model('Massage', massageSchema);
 
-// use Massage.findById to find by id in Mongoose
-// use Massage.findByIdAndUpdate to update after finding in Mongoose
 // use Massage.findByIdAndDelete to delete after finding in Mongoose
 
 // massages restful routes
@@ -76,7 +74,15 @@ app.put('/massages/:id', (req, res) => {
 		req.body,
 		(err, massage) => err ?
 			console.log('there was an error retrieving the massage with id: ', req.params.id) :
-			res.send(massage)
+			res.send(massage),
+	);
+});
+app.delete('/massages/:id', (req, res) => {
+	Massage.findByIdAndDelete(
+		req.params.id,
+		(err, massage) => err ?
+			console.log('there was an error deleting the massage with id: ', req.params.id) :
+			res.send(massage),
 	);
 });
 
