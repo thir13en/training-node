@@ -1,4 +1,4 @@
-export interface Get {
+export interface GET {
   path: string;
   pathParams?: (string | number)[];
   queryParams?: { param: string, value: string }[];

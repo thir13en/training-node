@@ -9,6 +9,7 @@ import { tap } from 'rxjs/operators';
 import { NetworkUtils } from '@app/network';
 import { routing } from '@app/routes';
 import { ROUTE_FRAGMENTS } from '@routes/routes';
+import { NetworkInterfaces } from "@network/interfaces";
 import { ApiService } from '@services/api.service';
 
 
@@ -84,12 +85,20 @@ export class MassagesComposerComponent implements OnInit {
       imageUrl: imageUrl.value,
       description: description.value,
     };
-
-    httpMethod({
+    let requestData: NetworkInterfaces.POST | NetworkInterfaces.PUT = {
       path,
       payload: massageData,
-      pathParams: [this.massageId],
-    }).subscribe(
+    };
+
+    // only if it's edit mode we already know the massageId
+    if (this.editMode) {
+      requestData = {
+        ...requestData,
+        pathParams: [this.massageId],
+      };
+    }
+
+    httpMethod(requestData).subscribe(
       () => this.router.navigateByUrl(routing.ROUTES.MASSAGES),
     );
   }

@@ -16,7 +16,7 @@ export class ApiService {
     private http: HttpClient,
   ) {}
 
-  get(data: NetworkInterfaces.Get): Observable<any> {
+  get(data: NetworkInterfaces.GET): Observable<any> {
     const url: string = this.getFullUrlWithPath(data.path, data.pathParams);
 
     return this.http.get(...this.buildRequestData(url, data.queryParams)).pipe(
