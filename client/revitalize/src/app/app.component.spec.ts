@@ -1,25 +1,35 @@
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
-
-import { TestingModule } from './testing/testing.module';
+import { TestBed, async } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
-
 describe('AppComponent', () => {
-  let fixture: ComponentFixture<AppComponent>;
-  let component: AppComponent;
-
-  beforeEach(async(() =>
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [TestingModule],
-      declarations: [AppComponent],
-    }).compileComponents()
-  ));
+      imports: [
+        RouterTestingModule
+      ],
+      declarations: [
+        AppComponent
+      ],
+    }).compileComponents();
+  }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(AppComponent);
-    component = fixture.debugElement.componentInstance;
+  it('should create the app', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app).toBeTruthy();
   });
 
-  it('should create the app', () => expect(component).toBeTruthy());
+  it(`should have as title 'revitalize'`, () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app.title).toEqual('revitalize');
+  });
 
+  it('should render title', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    expect(compiled.querySelector('.content span').textContent).toContain('revitalize app is running!');
+  });
 });

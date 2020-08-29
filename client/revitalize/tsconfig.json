@@ -1,43 +1,17 @@
+/*
+  This is a "Solution Style" tsconfig.json file, and is used by editors and TypeScript’s language server to improve development experience.
+  It is not intended to be used to perform a compilation.
+
+  To learn more about this file see: https://angular.io/config/solution-tsconfig.
+*/
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
-    "lib": [
-      "ES2019",
-      "dom"
-    ],
-    "module": "esnext",
-    "moduleResolution": "node",
-    "target": "ES2016",
-    "sourceMap": true,
-    "declaration": false,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "noUnusedLocals": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "strict": true,
-    "strictPropertyInitialization": false,
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "paths": {
-      "@environments/*": ["src/environments/*"],
-      "@app/*": ["src/app/*"],
-      "@core/*": ["src/app/core/*"],
-      "@network/*": ["src/app/network/*"],
-      "@routes/*": ["src/app/routes/*"],
-      "@ui/*": ["src/app/ui/*"],
-      "@utils/*": ["src/app/utils/*"],
-      "@layout/*": ["src/app/layout/*"],
-      "@services/*": ["src/app/services/*"],
-      "@testing/*": ["src/app/testing/*"]
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.spec.json"
     }
-  },
-  "angularCompilerOptions": {
-    "fullTemplateTypeCheck": true,
-    "strictInjectionParameters": true
-  }
+]
 }

@@ -1,0 +1,43 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "lib": [
+      "ES2019",
+      "dom"
+    ],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "target": "ES2016",
+    "sourceMap": true,
+    "declaration": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "noUnusedLocals": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "paths": {
+      "@environments/*": ["src/environments/*"],
+      "@app/*": ["src/app/*"],
+      "@core/*": ["src/app/core/*"],
+      "@network/*": ["src/app/network/*"],
+      "@routes/*": ["src/app/routes/*"],
+      "@ui/*": ["src/app/ui/*"],
+      "@utils/*": ["src/app/utils/*"],
+      "@layout/*": ["src/app/layout/*"],
+      "@services/*": ["src/app/services/*"],
+      "@testing/*": ["src/app/testing/*"]
+    }
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  }
+}
